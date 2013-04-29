@@ -37,4 +37,18 @@ describe "Managing tags via names" do
 
     article.tags.collect(&:name).should == ['portland', 'oregon', 'ruby']
   end
+
+  it "removes a single tag name" do
+    article.tag_names = ['portland', 'oregon']
+    article.tag_names.delete 'oregon'
+
+    article.tags.collect(&:name).should == ['portland']
+  end
+
+  it "removes tag names" do
+    article.tag_names  = ['portland', 'oregon', 'ruby']
+    article.tag_names -= ['oregon', 'ruby']
+
+    article.tags.collect(&:name).should == ['portland']
+  end
 end

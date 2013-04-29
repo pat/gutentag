@@ -19,6 +19,11 @@ class Gutentag::TagNames
     self
   end
 
+  def -(array)
+    array.each { |name| self.delete name }
+    self
+  end
+
   def <<(name)
     tag = Gutentag::Tag.where(:name => name).first ||
           Gutentag::Tag.create(:name => name)
@@ -28,6 +33,10 @@ class Gutentag::TagNames
 
   def clear
     taggable.tags.clear
+  end
+
+  def delete(name)
+    taggable.tags.delete Gutentag::Tag.where(:name => name).first
   end
 
   private
