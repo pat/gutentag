@@ -1,8 +1,8 @@
 require 'bundler'
 
-Bundler.require :default, :test
+Bundler.require :default, :development
 
-Combustion.initialize!
+Combustion.initialize! :active_record
 
 require 'rspec/rails'
 
