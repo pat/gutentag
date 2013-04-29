@@ -9,13 +9,15 @@ class GutentagTables < ActiveRecord::Migration
 
     add_index :taggings, :tag_id
     add_index :taggings, [:taggable_type, :taggable_id]
+    add_index :taggings, [:taggable_type, :taggable_id, :tag_id],
+      :unique => true, :name => 'unique_taggings'
 
     create_table :tags do |t|
       t.string :name, :null => false
       t.timestamps
     end
 
-    add_index :tags, :name
+    add_index :tags, :name, :unique => true
   end
 
   def down
