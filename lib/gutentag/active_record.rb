@@ -5,7 +5,8 @@ module Gutentag::ActiveRecord
 
   module ClassMethods
     def has_many_tags
-      has_many :taggings, :class_name => 'Gutentag::Tagging', :as => :taggable
+      has_many :taggings, :class_name => 'Gutentag::Tagging', :as => :taggable,
+        :dependent => :destroy
       has_many :tags,     :class_name => 'Gutentag::Tag',
         :through => :taggings
     end
