@@ -7,6 +7,7 @@ Gem::Specification.new do |s|
   s.homepage    = 'https://github.com/pat/gutentag'
   s.summary     = 'Good Tags'
   s.description = 'A good, simple, solid tagging extension for ActiveRecord'
+  s.license     = 'MIT'
 
   s.files         = `git ls-files`.split("\n")
   s.test_files    = `git ls-files -- {spec}/*`.split("\n")
