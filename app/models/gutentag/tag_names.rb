@@ -1,4 +1,6 @@
 class Gutentag::TagNames
+  include Enumerable
+
   def self.new_with_names(taggable, names)
     tag_names = new(taggable)
     tag_names.clear
@@ -37,6 +39,10 @@ class Gutentag::TagNames
 
   def delete(name)
     taggable.tags.delete Gutentag::Tag.where(:name => name).first
+  end
+
+  def each(&block)
+    to_a.each &block
   end
 
   private

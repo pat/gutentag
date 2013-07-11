@@ -2,9 +2,10 @@ require 'spec_helper'
 
 describe "Managing tags via names" do
   let(:article)   { Article.create }
-  let(:melbourne) { Gutentag::Tag.create :name => 'melbourne' }
 
   it "returns tag names" do
+    melbourne = Gutentag::Tag.create :name => 'melbourne'
+
     article.tags << melbourne
 
     article.tag_names.to_a.should == ['melbourne']
@@ -20,6 +21,17 @@ describe "Managing tags via names" do
     article.tag_names = ['portland', 'oregon']
 
     article.tags.collect(&:name).should == ['portland', 'oregon']
+  end
+
+  it "enumerates through tag names" do
+    article.tag_names = ['melbourne', 'victoria']
+    names = []
+
+    article.tag_names.each do |name|
+      names << name
+    end
+
+    names.should == ['melbourne', 'victoria']
   end
 
   it "does not allow duplication of tags" do
