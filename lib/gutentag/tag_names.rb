@@ -33,6 +33,14 @@ class Gutentag::TagNames
     taggable.tags << tag
   end
 
+  def |(array)
+    to_a | array
+  end
+
+  def &(array)
+    to_a & array
+  end
+
   def clear
     taggable.tags.clear
   end

@@ -63,4 +63,18 @@ describe "Managing tags via names" do
 
     article.tags.collect(&:name).should == ['portland']
   end
+
+  it "provides union operators" do
+    article.tag_names  = ['portland', 'ruby']
+    article.tag_names |= ['ruby', 'melbourne']
+
+    article.tags.collect(&:name).should == ['portland', 'ruby', 'melbourne']
+  end
+
+  it "provides intersection operators" do
+    article.tag_names  = ['portland', 'ruby']
+    article.tag_names &= ['ruby', 'melbourne']
+
+    article.tags.collect(&:name).should == ['ruby']
+  end
 end
