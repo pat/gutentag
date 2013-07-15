@@ -17,6 +17,13 @@ describe "Managing tags via names" do
     article.tags.collect(&:name).should == ['melbourne']
   end
 
+  it "doesn't complain when adding an existing tag" do
+    article.tag_names << 'melbourne'
+    article.tag_names << 'melbourne'
+
+    article.tags.collect(&:name).should == ['melbourne']
+  end
+
   it "accepts a completely new set of tags" do
     article.tag_names = ['portland', 'oregon']
 
@@ -45,6 +52,13 @@ describe "Managing tags via names" do
 
   it "appends tag names" do
     article.tag_names  = ['portland']
+    article.tag_names += ['oregon', 'ruby']
+
+    article.tags.collect(&:name).should == ['portland', 'oregon', 'ruby']
+  end
+
+  it "does not repeat appended names that already exist" do
+    article.tag_names  = ['portland', 'oregon']
     article.tag_names += ['oregon', 'ruby']
 
     article.tags.collect(&:name).should == ['portland', 'oregon', 'ruby']

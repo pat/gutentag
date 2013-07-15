@@ -4,7 +4,7 @@ class Gutentag::TagNames
   def self.new_with_names(taggable, names)
     tag_names = new(taggable)
     tag_names.clear
-    names.each { |name| tag_names << name }
+    names.each { |name| tag_names << Gutentag::TagName.normalise(name) }
     tag_names
   end
 
@@ -17,28 +17,31 @@ class Gutentag::TagNames
   end
 
   def +(array)
-    array.each { |name| self.<< name }
+    (normalised(array) - to_a).each { |name| self.<< name }
+
     self
   end
 
   def -(array)
-    array.each { |name| self.delete name }
+    normalised(array).each { |name| self.delete name }
+
     self
   end
 
   def <<(name)
-    tag = Gutentag::Tag.where(:name => name).first ||
-          Gutentag::Tag.create(:name => name)
+    name = Gutentag::TagName.normalise name
+    tag  = Gutentag::Tag.where(:name => name).first ||
+           Gutentag::Tag.create(:name => name)
 
-    taggable.tags << tag
+    taggable.tags << tag unless taggable.tags.include?(tag)
   end
 
   def |(array)
-    to_a | array
+    to_a | normalised(array)
   end
 
   def &(array)
-    to_a & array
+    to_a & normalised(array)
   end
 
   def clear
@@ -56,4 +59,8 @@ class Gutentag::TagNames
   private
 
   attr_reader :taggable
+
+  def normalised(array)
+    array.collect { |name| Gutentag::TagName.normalise(name) }
+  end
 end
