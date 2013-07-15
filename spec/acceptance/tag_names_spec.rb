@@ -77,4 +77,15 @@ describe "Managing tags via names" do
 
     article.tags.collect(&:name).should == ['ruby']
   end
+
+  it "matches tag names ignoring case" do
+    article.tag_names  = ['portland']
+    article.tag_names += ['Portland']
+
+    article.tags.collect(&:name).should == ['portland']
+
+    article.tag_names << 'Portland'
+
+    article.tags.collect(&:name).should == ['portland']
+  end
 end
