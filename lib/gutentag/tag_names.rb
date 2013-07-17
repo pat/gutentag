@@ -44,7 +44,7 @@ class Gutentag::TagNames
   end
 
   def delete(name)
-    taggable.tags.delete Gutentag::Tag.where(:name => name).first
+    taggable.tags.delete Gutentag::Tag.find_by_name(name)
   end
 
   def each(&block)

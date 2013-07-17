@@ -1,6 +1,24 @@
 require 'spec_helper'
 
 describe Gutentag::Tag do
+  describe '.find_by_name' do
+    it "returns a tag with the same name" do
+      existing = Gutentag::Tag.create! :name => 'pancakes'
+
+      Gutentag::Tag.find_by_name('pancakes').should == existing
+    end
+
+    it "returns a tag with the same normalised name" do
+      existing = Gutentag::Tag.create! :name => 'pancakes'
+
+      Gutentag::Tag.find_by_name('Pancakes').should == existing
+    end
+
+    it "otherwise returns nil" do
+      Gutentag::Tag.find_by_name('pancakes').should be_nil
+    end
+  end
+
   describe '.find_or_create' do
     it "returns a tag with the same name" do
       existing = Gutentag::Tag.create! :name => 'pancakes'

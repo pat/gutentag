@@ -6,9 +6,12 @@ class Gutentag::Tag < ActiveRecord::Base
 
   before_validation :normalise_name
 
+  def self.find_by_name(name)
+    where(:name => Gutentag::TagName.normalise(name)).first
+  end
+
   def self.find_or_create(name)
-    name = Gutentag::TagName.normalise name
-    where(:name => name).first || create(:name => name)
+    find_by_name(name) || create(:name => name)
   end
 
   private
