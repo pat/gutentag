@@ -26,9 +26,7 @@ class Gutentag::TagNames
   end
 
   def <<(name)
-    name = Gutentag::TagName.normalise name
-    tag  = Gutentag::Tag.where(:name => name).first ||
-           Gutentag::Tag.create(:name => name)
+    tag = Gutentag::Tag.find_or_create name
 
     taggable.tags << tag unless taggable.tags.include?(tag)
   end
