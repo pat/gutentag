@@ -2,10 +2,7 @@ class Gutentag::TagNames
   include Enumerable
 
   def self.new_with_names(taggable, names)
-    tag_names = new(taggable)
-    tag_names.clear
-    names.each { |name| tag_names << Gutentag::TagName.normalise(name) }
-    tag_names
+    new(taggable).replace names
   end
 
   def initialize(taggable)
@@ -54,6 +51,11 @@ class Gutentag::TagNames
 
   def each(&block)
     to_a.each &block
+  end
+
+  def replace(names)
+    clear
+    self.+ names
   end
 
   private
