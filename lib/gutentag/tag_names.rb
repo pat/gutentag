@@ -17,7 +17,7 @@ class Gutentag::TagNames
   end
 
   def +(array)
-    (normalised(array) - to_a).each { |name| self.<< name }
+    normalised(array).each { |name| self.<< name }
 
     self
   end
