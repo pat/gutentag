@@ -2,6 +2,8 @@ class Gutentag::Tag < ActiveRecord::Base
   has_many :taggings, :class_name => 'Gutentag::Tagging',
     :dependent => :destroy
 
+  attr_accessible :name
+
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
 
   before_validation :normalise_name
