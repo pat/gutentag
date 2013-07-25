@@ -6,11 +6,15 @@ describe Gutentag::Tagging do
     let(:taggable) { Article.create! }
 
     it "ensures tags are unique for any given taggable" do
-      Gutentag::Tagging.create! :tag => tag, :taggable => taggable
+      tagging = Gutentag::Tagging.new
+      tagging.tag      = tag
+      tagging.taggable = taggable
+      tagging.save!
 
-      Gutentag::Tagging.create(
-        :tag => tag, :taggable => taggable
-      ).should have(1).error_on(:tag_id)
+      tagging = Gutentag::Tagging.new
+      tagging.tag      = tag
+      tagging.taggable = taggable
+      tagging.should have(1).error_on(:tag_id)
     end
   end
 end
