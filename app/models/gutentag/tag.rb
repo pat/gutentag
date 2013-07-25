@@ -2,7 +2,7 @@ class Gutentag::Tag < ActiveRecord::Base
   has_many :taggings, :class_name => 'Gutentag::Tagging',
     :dependent => :destroy
 
-  attr_accessible :name
+  attr_accessible :name if Rails.version.to_s < '4.0.0'
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
 
