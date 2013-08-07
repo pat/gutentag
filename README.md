@@ -37,6 +37,11 @@ That's all it takes to get a tags association on each article. Of course, popula
     article.tag_names -= ['ruby']
     article.tag_names #=> ['pancakes', 'melbourne', 'portland']
 
+Changes to tag_names are not persisted immediately - you must save your taggable object to have the tag changes reflected in your database:
+
+    article.tag_names << 'ruby'
+    article.save
+
 ## Licence
 
 Copyright (c) 2013, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
