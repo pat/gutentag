@@ -9,18 +9,18 @@ module Gutentag::ActiveRecord
         :dependent => :destroy
       has_many :tags,     :class_name => 'Gutentag::Tag',
         :through => :taggings
+
+      after_save Gutentag::Persistence
+
+      attr_writer :tag_names
     end
+  end
+
+  def reset_tag_names
+    @tag_names = nil
   end
 
   def tag_names
-    @tag_names ||= Gutentag::TagNames.new self
-  end
-
-  def tag_names=(names)
-    if names.is_a?(Gutentag::TagNames)
-      @tag_names = names
-    else
-      @tag_names = Gutentag::TagNames.new_with_names self, names
-    end
+    @tag_names ||= tags.collect(&:name)
   end
 end
