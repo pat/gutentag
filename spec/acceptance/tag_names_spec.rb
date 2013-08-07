@@ -33,17 +33,6 @@ describe "Managing tags via names" do
     article.tags.collect(&:name).should == ['portland', 'oregon']
   end
 
-  it "enumerates through tag names" do
-    article.tag_names = ['melbourne', 'victoria']
-    names = []
-
-    article.tag_names.each do |name|
-      names << name
-    end
-
-    names.should == ['melbourne', 'victoria']
-  end
-
   it "does not allow duplication of tags" do
     existing = Article.create
     existing.tags << Gutentag::Tag.create(:name => 'portland')
@@ -84,22 +73,6 @@ describe "Managing tags via names" do
     article.save!
 
     article.tags.collect(&:name).should == ['portland']
-  end
-
-  it "provides union operators" do
-    article.tag_names  = ['portland', 'ruby']
-    article.tag_names |= ['ruby', 'melbourne']
-    article.save!
-
-    article.tags.collect(&:name).should == ['portland', 'ruby', 'melbourne']
-  end
-
-  it "provides intersection operators" do
-    article.tag_names  = ['portland', 'ruby']
-    article.tag_names &= ['ruby', 'melbourne']
-    article.save!
-
-    article.tags.collect(&:name).should == ['ruby']
   end
 
   it "matches tag names ignoring case" do
