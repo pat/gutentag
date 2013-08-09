@@ -94,4 +94,8 @@ describe "Managing tags via names" do
 
     article.tag_names.should == ['melbourne', 'pancakes']
   end
+
+  it "allows overriding of tag_names=" do
+    Article.instance_methods(false).should_not include(:tag_names=)
+  end
 end

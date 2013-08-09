@@ -11,8 +11,6 @@ module Gutentag::ActiveRecord
         :through => :taggings
 
       after_save Gutentag::Persistence
-
-      attr_writer :tag_names
     end
   end
 
@@ -22,5 +20,9 @@ module Gutentag::ActiveRecord
 
   def tag_names
     @tag_names ||= tags.collect(&:name)
+  end
+
+  def tag_names=(names)
+    @tag_names = names
   end
 end
