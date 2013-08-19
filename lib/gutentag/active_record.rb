@@ -10,7 +10,7 @@ module Gutentag::ActiveRecord
       has_many :tags,     :class_name => 'Gutentag::Tag',
         :through => :taggings
 
-      after_save Gutentag::Persistence
+      after_save { |instance| Gutentag::Persistence.new(instance).persist  }
     end
   end
 

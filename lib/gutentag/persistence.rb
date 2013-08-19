@@ -1,7 +1,6 @@
 class Gutentag::Persistence
-  def self.after_save(taggable)
-    new(taggable).persist
-  end
+
+  attr_writer :tagger, :normaliser
 
   def initialize(taggable)
     @taggable = taggable
@@ -22,17 +21,25 @@ class Gutentag::Persistence
 
   def add_new
     (changes - existing).each do |name|
-      taggable.tags << Gutentag::Tag.find_or_create(name)
+      taggable.tags << tagger.find_or_create(name)
     end
   end
 
   def normalised(names)
-    names.collect { |name| Gutentag::TagName.normalise(name) }.uniq
+    names.collect { |name| normaliser.call(name) }.uniq
   end
 
   def remove_old
     (existing - changes).each do |name|
-      taggable.tags.delete Gutentag::Tag.find_by_name(name)
+      taggable.tags.delete tagger.find_by_name(name)
     end
+  end
+
+  def tagger
+    @tagger ||= Gutentag::Tag
+  end
+
+  def normaliser
+    @normaliser ||= Proc.new { |name| Gutentag::TagName.normalise(name) }
   end
 end
