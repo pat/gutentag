@@ -4,6 +4,8 @@ class Gutentag::Tag < ActiveRecord::Base
 
   attr_accessible :name if Rails.version.to_s < '4.0.0'
 
+  scope :by_weight, ->{ order('tags.taggings_count DESC') }
+
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
 
   before_validation :normalise_name

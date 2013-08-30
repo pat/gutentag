@@ -1,6 +1,6 @@
 class Gutentag::Tagging < ActiveRecord::Base
   belongs_to :taggable, :polymorphic => true
-  belongs_to :tag, :class_name => 'Gutentag::Tag'
+  belongs_to :tag, :class_name => 'Gutentag::Tag', :counter_cache => true
 
   validates :taggable, :presence => true
   validates :tag,      :presence => true
