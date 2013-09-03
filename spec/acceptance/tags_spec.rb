@@ -37,7 +37,7 @@ describe 'Adding and removing tags' do
   end
 
   it 'should have a mean tag cloud' do
-    gorillas = Gutentag::Tag.create(name: 'gorillas')
+    gorillas = Gutentag::Tag.create(:name => 'gorillas')
     another_article = Article.create
 
     article.tags << pancakes
