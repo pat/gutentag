@@ -10,6 +10,11 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 
 ## Installation
 
+**Upgrading?** Gutentag has recently switched table names from `tags` and `taggings` to `gutentag_tags` and `gutentag_taggings`, to avoid conflicting with the more generic table names that may exist in Rails apps already. If you already have been using Gutentag, you'll need to create a migration manually that renames these tables:
+
+    rename_table :tags,     :gutentag_tags
+    rename_table :taggings, :gutentag_taggings
+
 Get it into your Gemfile - and don't forget the version constraint!
 
     gem 'gutentag', '~> 0.4.0'
