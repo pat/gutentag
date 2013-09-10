@@ -1,10 +1,12 @@
 class Gutentag::Tag < ActiveRecord::Base
+  self.table_name = 'gutentag_tags'
+
   has_many :taggings, :class_name => 'Gutentag::Tagging',
     :dependent => :destroy
 
   attr_accessible :name if Rails.version.to_s < '4.0.0'
 
-  scope :by_weight, ->{ order('tags.taggings_count DESC') }
+  scope :by_weight, ->{ order('gutentag_tags.taggings_count DESC') }
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
 
