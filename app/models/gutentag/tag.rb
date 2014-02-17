@@ -4,7 +4,7 @@ class Gutentag::Tag < ActiveRecord::Base
   has_many :taggings, :class_name => 'Gutentag::Tagging',
     :dependent => :destroy
 
-  attr_accessible :name if Rails.version.to_s < '4.0.0'
+  attr_accessible :name if Gutentag.config.attr_accssible?
 
   scope :by_weight, ->{ order('gutentag_tags.taggings_count DESC') }
 
