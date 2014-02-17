@@ -18,6 +18,14 @@ describe "Managing tags via names" do
     article.tags.collect(&:name).should == ['melbourne']
   end
 
+  it "allows for different tag normalisation" do
+    Gutentag.normaliser = lambda { |name| name.upcase }
+
+    Gutentag::Tag.create(:name => 'melbourne').name.should == 'MELBOURNE'
+
+    Gutentag.normaliser = nil
+  end
+
   it "doesn't complain when adding an existing tag" do
     article.tag_names << 'melbourne'
     article.tag_names << 'melbourne'

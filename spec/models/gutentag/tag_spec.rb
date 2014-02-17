@@ -39,11 +39,11 @@ describe Gutentag::Tag do
 
   describe '#name' do
     before :each do
-      Gutentag::TagName.stub :normalise => 'waffles'
+      Gutentag::TagName.stub :call => 'waffles'
     end
 
     it "normalises the provided name" do
-      Gutentag::TagName.should_receive(:normalise).with('Pancakes').
+      Gutentag::TagName.should_receive(:call).with('Pancakes').
         and_return('waffles')
 
       Gutentag::Tag.create!(:name => 'Pancakes')

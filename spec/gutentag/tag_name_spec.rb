@@ -1,9 +1,9 @@
 require 'spec_helper'
 
 describe Gutentag::TagName do
-  describe '.normalise' do
+  describe '.call' do
     it "downcases the provided name" do
-      Gutentag::TagName.normalise('Tasty Pancakes').should == 'tasty pancakes'
+      Gutentag::TagName.call('Tasty Pancakes').should == 'tasty pancakes'
     end
   end
 end

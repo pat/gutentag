@@ -13,7 +13,7 @@ class Gutentag::Tag < ActiveRecord::Base
   before_validation :normalise_name
 
   def self.find_by_name(name)
-    where(:name => Gutentag::TagName.normalise(name)).first
+    where(:name => Gutentag.normaliser.call(name)).first
   end
 
   def self.find_or_create(name)
@@ -23,6 +23,6 @@ class Gutentag::Tag < ActiveRecord::Base
   private
 
   def normalise_name
-    self.name = Gutentag::TagName.normalise name
+    self.name = Gutentag.normaliser.call name
   end
 end

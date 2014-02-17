@@ -40,6 +40,6 @@ class Gutentag::Persistence
   end
 
   def normaliser
-    @normaliser ||= Proc.new { |name| Gutentag::TagName.normalise(name) }
+    @normaliser ||= Proc.new { |name| Gutentag.normaliser.call(name) }
   end
 end

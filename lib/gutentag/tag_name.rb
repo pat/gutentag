@@ -1,5 +1,5 @@
 class Gutentag::TagName
-  def self.normalise(name)
+  def self.call(name)
     new(name).to_s
   end
 
