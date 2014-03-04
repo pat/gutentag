@@ -23,6 +23,15 @@ module Gutentag::ActiveRecord
   end
 
   def tag_names=(names)
+    existing = _denormalised(tag_names) || []
+    new = _denormalised(names) || []
+    changes = (existing + new).uniq - (existing & new)
+    changed_attributes[:tag_names] = tag_names if changes.present?
     @tag_names = names
+  end
+
+  private
+  def _denormalised(names)
+    names.split(",").flatten rescue names
   end
 end

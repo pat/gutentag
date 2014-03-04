@@ -18,6 +18,24 @@ describe "Managing tags via names" do
     article.tags.collect(&:name).should == ['melbourne']
   end
 
+  it "makes model dirty when changing through tag_names" do
+    article.tag_names << 'melbourne'
+    article.save!
+
+    article.tag_names = ['sydney']
+
+    article.changed_attributes.should == { :tag_names => ['melbourne'] }
+  end
+
+  it "does not make model dirty when changing through tag_names" do
+    article.tag_names << 'melbourne'
+    article.save!
+
+    article.tag_names = ['melbourne']
+
+    article.changed_attributes.should == {}
+  end
+
   it "allows for different tag normalisation" do
     Gutentag.normaliser = lambda { |name| name.upcase }
 
