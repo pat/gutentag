@@ -14,7 +14,9 @@ describe Gutentag::Tagging do
       tagging = Gutentag::Tagging.new
       tagging.tag      = tag
       tagging.taggable = taggable
-      tagging.should have(1).error_on(:tag_id)
+
+      tagging.valid?
+      expect(tagging.errors[:tag_id].length).to eq(1)
     end
   end
 end

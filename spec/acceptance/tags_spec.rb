@@ -7,7 +7,7 @@ describe 'Adding and removing tags' do
   it "stores new tags" do
     article.tags << pancakes
 
-    article.tags.reload.should == [pancakes]
+    expect(article.tags.reload).to eq([pancakes])
   end
 
   it "removes existing tags" do
@@ -15,7 +15,7 @@ describe 'Adding and removing tags' do
 
     article.tags.delete pancakes
 
-    article.tags.reload.should == []
+    expect(article.tags.reload).to eq([])
   end
 
   it "removes taggings when an article is deleted" do
@@ -23,9 +23,9 @@ describe 'Adding and removing tags' do
 
     article.destroy
 
-    Gutentag::Tagging.where(
+    expect(Gutentag::Tagging.where(
       :taggable_type => 'Article', :taggable_id => article.id
-    ).count.should be_zero
+    ).count).to be_zero
   end
 
   it "removes taggings when a tag is deleted" do
@@ -33,7 +33,7 @@ describe 'Adding and removing tags' do
 
     pancakes.destroy
 
-    Gutentag::Tagging.where(:tag_id => pancakes.id).count.should be_zero
+    expect(Gutentag::Tagging.where(:tag_id => pancakes.id).count).to be_zero
   end
 
   it 'should have a mean tag cloud' do
@@ -41,10 +41,10 @@ describe 'Adding and removing tags' do
     another_article = Article.create
 
     article.tags << pancakes
-    Gutentag::Tag.by_weight.first.should == pancakes
+    expect(Gutentag::Tag.by_weight.first).to eq(pancakes)
 
     article.tags << gorillas
     another_article.tags << gorillas
-    Gutentag::Tag.by_weight.first.should == gorillas
+    expect(Gutentag::Tag.by_weight.first).to eq(gorillas)
   end
 end

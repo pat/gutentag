@@ -8,14 +8,14 @@ describe "Managing tags via names" do
 
     article.tags << melbourne
 
-    article.tag_names.should == ['melbourne']
+    expect(article.tag_names).to eq(['melbourne'])
   end
 
   it "adds tags via their names" do
     article.tag_names << 'melbourne'
     article.save!
 
-    article.tags.collect(&:name).should == ['melbourne']
+    expect(article.tags.collect(&:name)).to eq(['melbourne'])
   end
 
   it "makes model dirty when changing through tag_names" do
@@ -34,13 +34,14 @@ describe "Managing tags via names" do
 
     article.tag_names = ['melbourne']
 
-    article.changed_attributes.should == {}
+    expect(article.changed_attributes).to eq({})
   end
 
   it "allows for different tag normalisation" do
     Gutentag.normaliser = lambda { |name| name.upcase }
 
-    Gutentag::Tag.create(:name => 'melbourne').name.should == 'MELBOURNE'
+    tag = Gutentag::Tag.create(:name => 'melbourne')
+    expect(tag.name).to eq('MELBOURNE')
 
     Gutentag.normaliser = nil
   end
@@ -50,14 +51,14 @@ describe "Managing tags via names" do
     article.tag_names << 'melbourne'
     article.save!
 
-    article.tags.collect(&:name).should == ['melbourne']
+    expect(article.tags.collect(&:name)).to eq(['melbourne'])
   end
 
   it "accepts a completely new set of tags" do
     article.tag_names = ['portland', 'oregon']
     article.save!
 
-    article.tags.collect(&:name).should == ['portland', 'oregon']
+    expect(article.tags.collect(&:name)).to eq(['portland', 'oregon'])
   end
 
   it "does not allow duplication of tags" do
@@ -67,7 +68,7 @@ describe "Managing tags via names" do
     article.tag_names = ['portland']
     article.save!
 
-    existing.tag_ids.should == article.tag_ids
+    expect(existing.tag_ids).to eq(article.tag_ids)
   end
 
   it "appends tag names" do
@@ -75,7 +76,7 @@ describe "Managing tags via names" do
     article.tag_names += ['oregon', 'ruby']
     article.save!
 
-    article.tags.collect(&:name).should == ['portland', 'oregon', 'ruby']
+    expect(article.tags.collect(&:name)).to eq(['portland', 'oregon', 'ruby'])
   end
 
   it "does not repeat appended names that already exist" do
@@ -83,7 +84,7 @@ describe "Managing tags via names" do
     article.tag_names += ['oregon', 'ruby']
     article.save!
 
-    article.tags.collect(&:name).should == ['portland', 'oregon', 'ruby']
+    expect(article.tags.collect(&:name)).to eq(['portland', 'oregon', 'ruby'])
   end
 
   it "removes a single tag name" do
@@ -91,7 +92,7 @@ describe "Managing tags via names" do
     article.tag_names.delete 'oregon'
     article.save!
 
-    article.tags.collect(&:name).should == ['portland']
+    expect(article.tags.collect(&:name)).to eq(['portland'])
   end
 
   it "removes tag names" do
@@ -99,7 +100,7 @@ describe "Managing tags via names" do
     article.tag_names -= ['oregon', 'ruby']
     article.save!
 
-    article.tags.collect(&:name).should == ['portland']
+    expect(article.tags.collect(&:name)).to eq(['portland'])
   end
 
   it "matches tag names ignoring case" do
@@ -107,22 +108,22 @@ describe "Managing tags via names" do
     article.tag_names += ['Portland']
     article.save!
 
-    article.tags.collect(&:name).should == ['portland']
+    expect(article.tags.collect(&:name)).to eq(['portland'])
 
     article.tag_names << 'Portland'
     article.save!
 
-    article.tags.collect(&:name).should == ['portland']
+    expect(article.tags.collect(&:name)).to eq(['portland'])
   end
 
   it "allows setting of tag names on unpersisted objects" do
     article = Article.new :tag_names => ['melbourne', 'pancakes']
     article.save!
 
-    article.tag_names.should == ['melbourne', 'pancakes']
+    expect(article.tag_names).to eq(['melbourne', 'pancakes'])
   end
 
   it "allows overriding of tag_names=" do
-    Article.instance_methods(false).should_not include(:tag_names=)
+    expect(Article.instance_methods(false)).to_not include(:tag_names=)
   end
 end
