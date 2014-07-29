@@ -24,7 +24,7 @@ describe "Managing tags via names" do
 
     article.tag_names = ['sydney']
 
-    article.changed_attributes.should == { :tag_names => ['melbourne'] }
+    article.changed_attributes.should == {:tag_names => ['melbourne']}
   end
 
   it "does not make model dirty when changing through tag_names" do
