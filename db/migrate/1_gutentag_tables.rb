@@ -14,10 +14,12 @@ class GutentagTables < ActiveRecord::Migration
 
     create_table :gutentag_tags do |t|
       t.string :name, :null => false
+      t.string :slug
       t.timestamps
     end
 
     add_index :gutentag_tags, :name, :unique => true
+    add_index :gutentag_tags, :slug
   end
 
   def down
