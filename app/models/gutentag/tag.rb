@@ -9,7 +9,7 @@ class Gutentag::Tag < ActiveRecord::Base
   scope :by_weight, ->{ order('gutentag_tags.taggings_count DESC') }
 
   validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
-
+  
   before_validation :normalise_name
 
   def self.find_by_name(name)
@@ -24,5 +24,10 @@ class Gutentag::Tag < ActiveRecord::Base
 
   def normalise_name
     self.name = Gutentag.normaliser.call name
+    generate_slug
+  end
+  
+  def generate_slug
+    self.slug = self.name.parameterize
   end
 end
