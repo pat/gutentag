@@ -19,7 +19,7 @@ module Gutentag::ActiveRecord
   end
 
   def tag_names
-    @tag_names ||= tags.collect(&:name)
+    @tag_names ||= tags.pluck(:name)
   end
 
   def tag_names=(names)
