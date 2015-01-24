@@ -1,5 +1,7 @@
 language: ruby
-script: bundle exec rspec spec
+script: bundle exec appraisal rspec
 rvm:
-  - 1.9.3
   - 2.0.0
+  - 2.2.0
+before_script:
+  - bundle exec appraisal install
