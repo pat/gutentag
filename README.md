@@ -12,7 +12,7 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 
 Get it into your Gemfile - and don't forget the version constraint!
 
-    gem 'gutentag', '~> 0.5.1'
+    gem 'gutentag', '~> 0.6.0'
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
 
@@ -20,6 +20,12 @@ Next: your tags get persisted to your database, so let's import and run the migr
     rake db:migrate
 
 ## Upgrading
+
+### 0.6.0
+
+Rails 4.2 is supported as of Gutentag 0.6.0 - but please note that due to internal changes in ActiveRecord, changes to tag_names will no longer be tracked by your model's dirty state. This feature will continue to work in Rails 3.2 through to 4.1 though.
+
+### 0.5.0
 
 Between 0.4.0 and 0.5.0, Gutentag switched table names from `tags` and `taggings` to `gutentag_tags` and `gutentag_taggings`. This has been done to avoid conflicting with the more generic table names that may exist in Rails apps already.
 
@@ -53,4 +59,4 @@ Changes to tag_names are not persisted immediately - you must save your taggable
 
 ## Licence
 
-Copyright (c) 2013, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
+Copyright (c) 2013-2015, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
