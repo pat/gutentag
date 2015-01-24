@@ -23,7 +23,7 @@ module Gutentag::ActiveRecord
   end
 
   def tag_names=(names)
-    Gutentag::Dirty.call self, names
+    Gutentag.dirtier.call self, names if Gutentag.dirtier
 
     @tag_names = names
   end

@@ -26,7 +26,7 @@ describe "Managing tags via names" do
 
     expect(article.changed_attributes.stringify_keys).
       to eq('tag_names' => ['melbourne'])
-  end
+  end if Gutentag.dirtier
 
   it "does not make model dirty when changing through tag_names" do
     article.tag_names << 'melbourne'
