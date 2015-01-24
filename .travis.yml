@@ -3,5 +3,7 @@ script: bundle exec appraisal rspec
 rvm:
   - 2.0.0
   - 2.2.0
+before_install:
+  - gem install bundler
 before_script:
   - bundle exec appraisal install
