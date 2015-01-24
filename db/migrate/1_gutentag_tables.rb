@@ -4,7 +4,7 @@ class GutentagTables < ActiveRecord::Migration
       t.integer :tag_id,        :null => false
       t.integer :taggable_id,   :null => false
       t.string  :taggable_type, :null => false
-      t.timestamps
+      t.timestamps :null => false
     end
 
     add_index :gutentag_taggings, :tag_id
@@ -14,7 +14,7 @@ class GutentagTables < ActiveRecord::Migration
 
     create_table :gutentag_tags do |t|
       t.string :name, :null => false
-      t.timestamps
+      t.timestamps :null => false
     end
 
     add_index :gutentag_tags, :name, :unique => true
