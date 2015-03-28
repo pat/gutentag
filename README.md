@@ -57,6 +57,10 @@ Changes to tag_names are not persisted immediately - you must save your taggable
     article.tag_names << 'ruby'
     article.save
 
+## Contribution
+
+Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
+
 ## Licence
 
 Copyright (c) 2013-2015, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
