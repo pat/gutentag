@@ -14,8 +14,8 @@ Gem::Specification.new do |s|
   s.require_paths = ['lib']
 
   s.add_runtime_dependency     'activerecord', '>= 3.2.0'
-  s.add_runtime_dependency     'appraisal',    '~> 1.0.2'
 
+  s.add_development_dependency 'appraisal',    '~> 1.0.2'
   s.add_development_dependency 'bundler',      '>= 1.7.12'
   s.add_development_dependency 'combustion',   '0.5.1'
   s.add_development_dependency 'rails'
