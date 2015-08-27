@@ -19,6 +19,29 @@ Next: your tags get persisted to your database, so let's import and run the migr
     rake gutentag:install:migrations
     rake db:migrate
 
+If you want to use Gutentag outside of Rails, you can. However, this means you lose the migration import rake task. As a workaround, here's the expected schema (as of 0.7.0):
+
+    create_table :gutentag_taggings do |t|
+      t.integer :tag_id,        :null => false
+      t.integer :taggable_id,   :null => false
+      t.string  :taggable_type, :null => false
+      t.timestamps :null => false
+    end
+
+    add_index :gutentag_taggings, :tag_id
+    add_index :gutentag_taggings, [:taggable_type, :taggable_id]
+    add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id],
+      :unique => true, :name => 'unique_taggings'
+
+    create_table :gutentag_tags do |t|
+      t.string  :name,           :null => false
+      t.integer :taggings_count, :null => false, :default => 0
+      t.timestamps :null => false
+    end
+
+    add_index :gutentag_tags, :name, :unique => true
+    add_index :gutentag_tags, :taggings_count
+
 ## Upgrading
 
 ### 0.6.0
