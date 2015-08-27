@@ -3,13 +3,13 @@ appraise 'rails_3_2' do
 end if RUBY_VERSION < '2.2.0'
 
 appraise 'rails_4_0' do
-  gem 'rails', '~> 4.0.12'
+  gem 'rails', '~> 4.0.13'
 end
 
 appraise 'rails_4_1' do
-  gem 'rails', '~> 4.1.8'
+  gem 'rails', '~> 4.1.13'
 end
 
 appraise 'rails_4_2' do
-  gem 'rails', '~> 4.2.0'
+  gem 'rails', '~> 4.2.4'
 end
