@@ -10,7 +10,7 @@ module Gutentag::ActiveRecord
       has_many :tags,     :class_name => 'Gutentag::Tag',
         :through => :taggings
 
-      after_save { |instance| Gutentag::Persistence.new(instance).persist  }
+      after_save :persist_tags
     end
   end
 
@@ -26,5 +26,11 @@ module Gutentag::ActiveRecord
     Gutentag.dirtier.call self, names if Gutentag.dirtier
 
     @tag_names = names
+  end
+
+  private
+
+  def persist_tags
+    Gutentag::Persistence.new(self).persist
   end
 end
