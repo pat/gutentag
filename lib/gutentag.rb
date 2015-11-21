@@ -16,12 +16,21 @@ module Gutentag
   def self.normaliser=(normaliser)
     @normaliser = normaliser
   end
+
+  def self.tag_validations
+    @tag_validations ||= Gutentag::TagValidations
+  end
+
+  def self.tag_validations=(tag_validations)
+    @tag_validations = tag_validations
+  end
 end
 
 require 'gutentag/active_record'
 require 'gutentag/dirty'
 require 'gutentag/persistence'
 require 'gutentag/tag_name'
+require 'gutentag/tag_validations'
 
 if ActiveRecord::VERSION::MAJOR == 3
   Gutentag.dirtier = Gutentag::Dirty

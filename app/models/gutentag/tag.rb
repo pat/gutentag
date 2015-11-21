@@ -8,7 +8,7 @@ class Gutentag::Tag < ActiveRecord::Base
 
   scope :by_weight, ->{ order('gutentag_tags.taggings_count DESC') }
 
-  validates :name, :presence => true, :uniqueness => {:case_sensitive => false}
+  Gutentag.tag_validations.call self
 
   before_validation :normalise_name
 
