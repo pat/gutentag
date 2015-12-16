@@ -14,8 +14,9 @@ module Gutentag::ActiveRecord
     end
 
     def in_tag(*tags)
-      names = tags.flatten.collect { |tag| tag.respond_to?(:name) ? tag.name : tag.to_s }
-      joins(:tags).where(Gutentag::Tag.table_name => { name: names }).uniq
+      joins(:tags).where(
+        Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
+      ).uniq
     end
   end
 

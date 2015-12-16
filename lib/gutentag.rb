@@ -30,6 +30,7 @@ require 'gutentag/active_record'
 require 'gutentag/dirty'
 require 'gutentag/persistence'
 require 'gutentag/tag_name'
+require 'gutentag/tag_names'
 require 'gutentag/tag_validations'
 
 if ActiveRecord::VERSION::MAJOR == 3
