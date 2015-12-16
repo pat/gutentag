@@ -80,7 +80,7 @@ Changes to tag_names are not persisted immediately - you must save your taggable
     article.tag_names << 'ruby'
     article.save
 
-### `Model.tagged_with('tag1', 'tag2', ...)`
+You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
 
     Article.tagged_with('tag1', 'tag2')
     Article.tagged_with(:tag1, :tag2)
