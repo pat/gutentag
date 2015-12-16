@@ -3,7 +3,7 @@ require 'spec_helper'
 describe Gutentag::ActiveRecord do
   describe '.in_tag' do
     let!(:melborne_article) do
-      article = Article.create title: 'Overview'
+      article = Article.create :title => 'Overview'
       article.tag_names << 'melborne'
       article.save!
       article
