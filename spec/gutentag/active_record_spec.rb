@@ -1,7 +1,7 @@
 require 'spec_helper'
 
 describe Gutentag::ActiveRecord do
-  describe '.in_tag' do
+  describe '.tagged_with' do
     let!(:melborne_article) do
       article = Article.create :title => 'Overview'
       article.tag_names << 'melborne'
@@ -24,7 +24,7 @@ describe Gutentag::ActiveRecord do
     end
 
     context 'given a single tag name' do
-      subject { Article.in_tag('melborne') }
+      subject { Article.tagged_with('melborne') }
 
       it { expect(subject.count).to eq 2 }
       it { is_expected.to include melborne_article, melborne_oregon_article }
@@ -32,7 +32,7 @@ describe Gutentag::ActiveRecord do
     end
 
     context 'given a single tag name[symbol]' do
-      subject { Article.in_tag(:melborne) }
+      subject { Article.tagged_with(:melborne) }
 
       it { expect(subject.count).to eq 2 }
       it { is_expected.to include melborne_article, melborne_oregon_article }
@@ -40,21 +40,21 @@ describe Gutentag::ActiveRecord do
     end
 
     context 'given multiple tag names' do
-      subject { Article.in_tag('melborne', 'oregon') }
+      subject { Article.tagged_with('melborne', 'oregon') }
 
       it { expect(subject.count).to eq 3 }
       it { is_expected.to include melborne_article, oregon_article, melborne_oregon_article }
     end
 
     context 'given an array of tag names' do
-      subject { Article.in_tag(%w(melborne oregon)) }
+      subject { Article.tagged_with(%w(melborne oregon)) }
 
       it { expect(subject.count).to eq 3 }
       it { is_expected.to include melborne_article, oregon_article, melborne_oregon_article }
     end
 
     context 'given a single tag instance' do
-      subject { Article.in_tag(Gutentag::Tag.find_by_name('melborne')) }
+      subject { Article.tagged_with(Gutentag::Tag.find_by_name('melborne')) }
 
       it { expect(subject.count).to eq 2 }
       it { is_expected.to include melborne_article, melborne_oregon_article }
@@ -62,14 +62,14 @@ describe Gutentag::ActiveRecord do
     end
 
     context 'given multiple tag objects' do
-      subject { Article.in_tag(Gutentag::Tag.where(name: %w(melborne oregon))) }
+      subject { Article.tagged_with(Gutentag::Tag.where(name: %w(melborne oregon))) }
 
       it { expect(subject.count).to eq 3 }
       it { is_expected.to include melborne_article, oregon_article, melborne_oregon_article }
     end
 
     context 'chaining where clause' do
-      subject { Article.in_tag(%w(melborne oregon)).where(title: 'Overview') }
+      subject { Article.tagged_with(%w(melborne oregon)).where(title: 'Overview') }
 
       it { expect(subject.count).to eq 1 }
       it { is_expected.to include melborne_article }

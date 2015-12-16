@@ -13,7 +13,7 @@ module Gutentag::ActiveRecord
       after_save :persist_tags
     end
 
-    def in_tag(*tags)
+    def tagged_with(*tags)
       joins(:tags).where(
         Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
       ).uniq
