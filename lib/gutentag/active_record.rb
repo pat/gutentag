@@ -12,6 +12,11 @@ module Gutentag::ActiveRecord
 
       after_save :persist_tags
     end
+
+    def in_tag(*tags)
+      names = tags.flatten.map { |tag| tag.respond_to?(:name) ? tag.name : tag.to_s }
+      joins(:tags).where(Gutentag::Tag.table_name => { name: names }).uniq
+    end
   end
 
   def reset_tag_names

@@ -80,6 +80,13 @@ Changes to tag_names are not persisted immediately - you must save your taggable
     article.tag_names << 'ruby'
     article.save
 
+### `Model.in_tag('tag1', 'tag2', ...)`
+
+    Article.in_tag('tag1', 'tag2')
+    Article.in_tag(:tag1, :tag2)
+    Article.in_tag(Gutentag::Tag.where(name: ['tag1', 'tag2'])
+    # => [#<Article id: "123">]
+
 ## Contribution
 
 Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
