@@ -3,6 +3,8 @@ require 'active_support/concern'
 module Gutentag::ActiveRecord
   extend ActiveSupport::Concern
 
+  UNIQUENESS_METHOD = ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct
+
   module ClassMethods
     def has_many_tags
       has_many :taggings, :class_name => 'Gutentag::Tagging', :as => :taggable,
@@ -16,7 +18,7 @@ module Gutentag::ActiveRecord
     def tagged_with(*tags)
       joins(:tags).where(
         Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
-      ).uniq
+      ).public_send UNIQUENESS_METHOD
     end
   end
 
