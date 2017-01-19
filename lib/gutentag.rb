@@ -43,7 +43,7 @@ if defined?(Rails::Engine)
   require 'gutentag/engine'
 else
   require 'active_record'
-  ActiveRecord::Base.include Gutentag::ActiveRecord
+  ActiveRecord::Base.send :include, Gutentag::ActiveRecord
   require File.expand_path(
     './../app/models/gutentag/tag', File.dirname(__FILE__)
   )
