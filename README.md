@@ -12,7 +12,7 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 
 Get it into your Gemfile - and don't forget the version constraint!
 
-    gem 'gutentag', '~> 0.7.0'
+    gem 'gutentag', '~> 0.8.0'
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
 
@@ -43,6 +43,14 @@ If you want to use Gutentag outside of Rails, you can. However, this means you l
     add_index :gutentag_tags, :taggings_count
 
 ## Upgrading
+
+### 0.8.0
+
+No breaking changes.
+
+### 0.7.0
+
+No breaking changes.
 
 ### 0.6.0
 
