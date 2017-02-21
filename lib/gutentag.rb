@@ -44,10 +44,6 @@ if defined?(Rails::Engine)
 else
   require 'active_record'
   ActiveRecord::Base.send :include, Gutentag::ActiveRecord
-  require File.expand_path(
-    './../app/models/gutentag/tag', File.dirname(__FILE__)
-  )
-  require File.expand_path(
-    './../app/models/gutentag/tagging', File.dirname(__FILE__)
-  )
+  require_relative '../app/models/gutentag/tag'
+  require_relative '../app/models/gutentag/tagging'
 end
