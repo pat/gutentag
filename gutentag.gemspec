@@ -1,4 +1,3 @@
-# -*- encoding: utf-8 -*-
 Gem::Specification.new do |s|
   s.name        = 'gutentag'
   s.version     = '0.8.0'
@@ -8,12 +7,11 @@ Gem::Specification.new do |s|
   s.summary     = 'Good Tags'
   s.description = 'A good, simple, solid tagging extension for ActiveRecord'
   s.license     = 'MIT'
+  s.required_ruby_version = '>= 2.0.0'
 
-  s.files         = `git ls-files`.split("\n")
-  s.test_files    = `git ls-files -- {spec}/*`.split("\n")
-  s.require_paths = ['lib']
+  s.files         = `git ls-files app db lib LICENSE README.md`.split("\n")
 
-  s.add_runtime_dependency     'activerecord', '>= 3.2.0'
+  s.add_runtime_dependency     'activerecord', ['>= 3.2.0', '< 5.1.0']
 
   s.add_development_dependency 'appraisal',    '~> 2.1.0'
   s.add_development_dependency 'bundler',      '>= 1.7.12'
