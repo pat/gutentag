@@ -1,4 +1,4 @@
-class GutentagTables < ActiveRecord::Migration
+class GutentagTables < (ActiveRecord::VERSION::MAJOR == 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration)
   def up
     create_table :gutentag_taggings do |t|
       t.integer :tag_id,        :null => false
