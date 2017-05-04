@@ -12,35 +12,41 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 
 Get it into your Gemfile - and don't forget the version constraint!
 
-    gem 'gutentag', '~> 0.8.0'
+```Ruby
+gem 'gutentag', '~> 0.8.0'
+```
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
 
-    rake gutentag:install:migrations
-    rake db:migrate
+```Bash
+rake gutentag:install:migrations
+rake db:migrate
+```
 
 If you want to use Gutentag outside of Rails, you can. However, this means you lose the migration import rake task. As a workaround, here's the expected schema (as of 0.7.0):
 
-    create_table :gutentag_taggings do |t|
-      t.integer :tag_id,        :null => false
-      t.integer :taggable_id,   :null => false
-      t.string  :taggable_type, :null => false
-      t.timestamps :null => false
-    end
+```Ruby
+create_table :gutentag_taggings do |t|
+  t.integer :tag_id,        null: false
+  t.integer :taggable_id,   null: false
+  t.string  :taggable_type, null: false
+  t.timestamps null: false
+end
 
-    add_index :gutentag_taggings, :tag_id
-    add_index :gutentag_taggings, [:taggable_type, :taggable_id]
-    add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id],
-      :unique => true, :name => 'unique_taggings'
+add_index :gutentag_taggings, :tag_id
+add_index :gutentag_taggings, [:taggable_type, :taggable_id]
+add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id],
+  unique: true, name: 'unique_taggings'
 
-    create_table :gutentag_tags do |t|
-      t.string  :name,           :null => false
-      t.integer :taggings_count, :null => false, :default => 0
-      t.timestamps :null => false
-    end
+create_table :gutentag_tags do |t|
+  t.string  :name,           null: false
+  t.integer :taggings_count, null: false, default: 0
+  t.timestamps null: false
+end
 
-    add_index :gutentag_tags, :name, :unique => true
-    add_index :gutentag_tags, :taggings_count
+add_index :gutentag_tags, :name, unique: true
+add_index :gutentag_tags, :taggings_count
+```
 
 ## Upgrading
 
@@ -62,37 +68,47 @@ Between 0.4.0 and 0.5.0, Gutentag switched table names from `tags` and `taggings
 
 If you were using Gutentag 0.4.0 (or older) and now want to upgrade, you'll need to create a migration manually that renames these tables:
 
-    rename_table :tags,     :gutentag_tags
-    rename_table :taggings, :gutentag_taggings
+```Ruby
+rename_table :tags,     :gutentag_tags
+rename_table :taggings, :gutentag_taggings
+```
 
 ## Usage
 
 The first step is easy: add the tag associations to whichever models should have tags (in these examples, the Article model):
 
-    class Article < ActiveRecord::Base
-      # ...
-      has_many_tags
-      # ...
-    end
+```Ruby
+class Article < ActiveRecord::Base
+  # ...
+  has_many_tags
+  # ...
+end
+```
 
 That's all it takes to get a tags association on each article. Of course, populating tags can be a little frustrating, unless you want to manage Gutentag::Tag instances yourself? As an alternative, just use the tag_names accessor to get/set tags via string representations.
 
-    article.tag_names #=> ['pancakes', 'melbourne', 'ruby']
-    article.tag_names << 'portland'
-    article.tag_names #=> ['pancakes', 'melbourne', 'ruby', 'portland']
-    article.tag_names -= ['ruby']
-    article.tag_names #=> ['pancakes', 'melbourne', 'portland']
+```Ruby
+article.tag_names #=> ['pancakes', 'melbourne', 'ruby']
+article.tag_names << 'portland'
+article.tag_names #=> ['pancakes', 'melbourne', 'ruby', 'portland']
+article.tag_names -= ['ruby']
+article.tag_names #=> ['pancakes', 'melbourne', 'portland']
+```
 
 Changes to tag_names are not persisted immediately - you must save your taggable object to have the tag changes reflected in your database:
 
-    article.tag_names << 'ruby'
-    article.save
+```Ruby
+article.tag_names << 'ruby'
+article.save
+```
 
 You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
 
-    Article.tagged_with('tag1', 'tag2')
-    Article.tagged_with(Gutentag::Tag.where(name: ['tag1', 'tag2'])
-    # => [#<Article id: "123">]
+```Ruby
+Article.tagged_with('tag1', 'tag2')
+Article.tagged_with(Gutentag::Tag.where(name: ['tag1', 'tag2']))
+# => [#<Article id: "123">]
+```
 
 ## Contribution
 
