@@ -1,5 +1,8 @@
 require 'bundler/setup'
 
+require 'single_cov'
+SingleCov.setup :rspec
+
 Bundler.require :default, :development
 
 Combustion.initialize! :active_record

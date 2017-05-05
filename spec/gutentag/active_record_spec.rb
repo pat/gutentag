@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+SingleCov.covered!
+
 describe Gutentag::ActiveRecord do
   describe '.tagged_with' do
     let!(:melborne_article) do
