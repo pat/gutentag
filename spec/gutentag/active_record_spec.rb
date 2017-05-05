@@ -54,11 +54,21 @@ describe Gutentag::ActiveRecord do
     end
 
     context 'given a single tag instance' do
-      subject { Article.tagged_with(Gutentag::Tag.find_by_name('melborne')) }
+      subject { Article.tagged_with(Gutentag::Tag.find_by_name!('melborne')) }
 
       it { expect(subject.count).to eq 2 }
       it { is_expected.to include melborne_article, melborne_oregon_article }
       it { is_expected.not_to include oregon_article }
+      it { expect(subject.to_sql).not_to include 'gutentag_tags' }
+    end
+
+    context 'given a single tag id' do
+      subject { Article.tagged_with(Gutentag::Tag.find_by_name!('melborne').id) }
+
+      it { expect(subject.count).to eq 2 }
+      it { is_expected.to include melborne_article, melborne_oregon_article }
+      it { is_expected.not_to include oregon_article }
+      it { expect(subject.to_sql).not_to include 'gutentag_tags' }
     end
 
     context 'given multiple tag objects' do
@@ -66,6 +76,7 @@ describe Gutentag::ActiveRecord do
 
       it { expect(subject.count).to eq 3 }
       it { is_expected.to include melborne_article, oregon_article, melborne_oregon_article }
+      it { expect(subject.to_sql).not_to include 'gutentag_tags' }
     end
 
     context 'chaining where clause' do
