@@ -4,6 +4,7 @@ module Gutentag::ActiveRecord
   extend ActiveSupport::Concern
 
   UNIQUENESS_METHOD = ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct
+  TAG_SEPARATOR = ",".freeze
 
   module ClassMethods
     def has_many_tags
@@ -34,6 +35,14 @@ module Gutentag::ActiveRecord
     Gutentag.dirtier.call self, names if Gutentag.dirtier
 
     @tag_names = names
+  end
+
+  def tags_as_string
+    tag_names.join(TAG_SEPARATOR)
+  end
+
+  def tags_as_string=(s)
+    self.tag_names = s.split(TAG_SEPARATOR)
   end
 
   private
