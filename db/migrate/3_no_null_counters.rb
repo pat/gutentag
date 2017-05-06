@@ -1,4 +1,6 @@
-class NoNullCounters < (ActiveRecord::VERSION::MAJOR == 5 ? ActiveRecord::Migration[5.0] : ActiveRecord::Migration)
+superclass = ActiveRecord::VERSION::MAJOR < 5 ?
+  ActiveRecord::Migration : ActiveRecord::Migration[4.2]
+class NoNullCounters < superclass
   def up
     change_column :gutentag_tags, :taggings_count, :integer, :default => 0,
       :null => false
