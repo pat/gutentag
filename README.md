@@ -8,7 +8,52 @@ A good, simple, solid tagging extension for ActiveRecord.
 
 This was built partly as a proof-of-concept, and partly to see how a tagging gem could work when it's not all stuffed within models, and partly just because I wanted a simpler tagging library. If you want to know more, read [this blog post](http://freelancing-gods.com/posts/gutentag_simple_rails_tagging).
 
-## Installation
+## Contents
+
+* [Usage](#usage)
+* [Installation](#installation)
+* [Upgrading](#upgrading)
+* [Contribution](#contributing)
+* [Licence](#licence)
+
+<h2 id="usage">Usage</h2>
+
+The first step is easy: add the tag associations to whichever models should have tags (in these examples, the Article model):
+
+```Ruby
+class Article < ActiveRecord::Base
+  # ...
+  has_many_tags
+  # ...
+end
+```
+
+That's all it takes to get a tags association on each article. Of course, populating tags can be a little frustrating, unless you want to manage Gutentag::Tag instances yourself? As an alternative, just use the tag_names accessor to get/set tags via string representations.
+
+```Ruby
+article.tag_names #=> ['pancakes', 'melbourne', 'ruby']
+article.tag_names << 'portland'
+article.tag_names #=> ['pancakes', 'melbourne', 'ruby', 'portland']
+article.tag_names -= ['ruby']
+article.tag_names #=> ['pancakes', 'melbourne', 'portland']
+```
+
+Changes to tag_names are not persisted immediately - you must save your taggable object to have the tag changes reflected in your database:
+
+```Ruby
+article.tag_names << 'ruby'
+article.save
+```
+
+You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
+
+```Ruby
+Article.tagged_with('tag1', 'tag2')
+Article.tagged_with(Gutentag::Tag.where(name: ['tag1', 'tag2']))
+# => [#<Article id: "123">]
+```
+
+<h2 id="installation">Installation</h2>
 
 Get it into your Gemfile - and don't forget the version constraint!
 
@@ -48,7 +93,7 @@ add_index :gutentag_tags, :name, unique: true
 add_index :gutentag_tags, :taggings_count
 ```
 
-## Upgrading
+<h2 id="upgrading">Upgrading</h2>
 
 ### 0.8.0
 
@@ -73,47 +118,10 @@ rename_table :tags,     :gutentag_tags
 rename_table :taggings, :gutentag_taggings
 ```
 
-## Usage
-
-The first step is easy: add the tag associations to whichever models should have tags (in these examples, the Article model):
-
-```Ruby
-class Article < ActiveRecord::Base
-  # ...
-  has_many_tags
-  # ...
-end
-```
-
-That's all it takes to get a tags association on each article. Of course, populating tags can be a little frustrating, unless you want to manage Gutentag::Tag instances yourself? As an alternative, just use the tag_names accessor to get/set tags via string representations.
-
-```Ruby
-article.tag_names #=> ['pancakes', 'melbourne', 'ruby']
-article.tag_names << 'portland'
-article.tag_names #=> ['pancakes', 'melbourne', 'ruby', 'portland']
-article.tag_names -= ['ruby']
-article.tag_names #=> ['pancakes', 'melbourne', 'portland']
-```
-
-Changes to tag_names are not persisted immediately - you must save your taggable object to have the tag changes reflected in your database:
-
-```Ruby
-article.tag_names << 'ruby'
-article.save
-```
-
-You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
-
-```Ruby
-Article.tagged_with('tag1', 'tag2')
-Article.tagged_with(Gutentag::Tag.where(name: ['tag1', 'tag2']))
-# => [#<Article id: "123">]
-```
-
-## Contribution
+<h2 id="contribution">Contribution</h2>
 
 Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
 
-## Licence
+<h2 id="licence">Licence</h2>
 
 Copyright (c) 2013-2015, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
