@@ -3,18 +3,20 @@ require 'active_support/concern'
 module Gutentag::ActiveRecord
   extend ActiveSupport::Concern
 
+  def self.call(model)
+    model.has_many :taggings, :class_name => 'Gutentag::Tagging',
+      :as => :taggable, :dependent => :destroy
+    model.has_many :tags,     :class_name => 'Gutentag::Tag',
+      :through => :taggings
+
+    model.after_save :persist_tags
+
+    model.include self
+  end
+
   UNIQUENESS_METHOD = ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct
 
   module ClassMethods
-    def has_many_tags
-      has_many :taggings, :class_name => 'Gutentag::Tagging', :as => :taggable,
-        :dependent => :destroy
-      has_many :tags,     :class_name => 'Gutentag::Tag',
-        :through => :taggings
-
-      after_save :persist_tags
-    end
-
     def tagged_with(*tags)
       Gutentag::TaggedWithQuery.call self, tags
     end

@@ -23,7 +23,7 @@ The first step is easy: add the tag associations to whichever models should have
 ```Ruby
 class Article < ActiveRecord::Base
   # ...
-  has_many_tags
+  Gutentag::ActiveRecord.call self
   # ...
 end
 ```

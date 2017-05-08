@@ -1,3 +1,3 @@
 class Article < ActiveRecord::Base
-  has_many_tags
+  Gutentag::ActiveRecord.call self
 end
