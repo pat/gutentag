@@ -89,4 +89,32 @@ describe Gutentag::ActiveRecord do
       it { is_expected.not_to include oregon_article, melborne_oregon_article }
     end
   end
+
+  describe "#tags_as_string" do
+    let(:article) { Article.new }
+
+    it "is empty" do
+      expect(article.tags_as_string).to eq ""
+    end
+
+    it "shows tags" do
+      article.tag_names = ["foo", "bar"]
+      expect(article.tags_as_string).to eq "foo,bar"
+    end
+  end
+
+  describe "#tags_as_string=" do
+    let(:article) { Article.new }
+
+    it "can empty" do
+      article.tag_names = ["foo", "bar"]
+      article.tags_as_string = ""
+      expect(article.tag_names).to eq []
+    end
+
+    it "can assign" do
+      article.tags_as_string = "a,b,c"
+      expect(article.tag_names).to eq ["a", "b", "c"]
+    end
+  end
 end
