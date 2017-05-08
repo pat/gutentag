@@ -1,5 +1,5 @@
 class Gutentag::TaggedWithQuery
-  UNIQUENESS_METHOD = ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct
+  UNIQUENESS_METHOD = (ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct)
 
   def self.call(model, tags)
     new(model, tags).call
@@ -29,9 +29,14 @@ class Gutentag::TaggedWithQuery
   end
 
   def name_query
+    tag_names = tags.map { |tag| tag_name(tag) }
     model.joins(:tags).where(
-      Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
+      Gutentag::Tag.table_name => {:name => tag_names}
     )
+  end
+
+  def tag_name(tag)
+    Gutentag.normaliser.call(tag.is_a?(Gutentag::Tag) ? tag.name : tag)
   end
 
   def objects?

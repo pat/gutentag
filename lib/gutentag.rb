@@ -10,7 +10,7 @@ module Gutentag
   end
 
   def self.normaliser
-    @normaliser ||= Gutentag::TagName
+    @normaliser ||= lambda { |tag_name| tag_name.to_s.downcase }
   end
 
   def self.normaliser=(normaliser)
@@ -29,8 +29,6 @@ end
 require 'gutentag/active_record'
 require 'gutentag/dirty'
 require 'gutentag/persistence'
-require 'gutentag/tag_name'
-require 'gutentag/tag_names'
 require 'gutentag/tag_validations'
 require 'gutentag/tagged_with_query'
 

@@ -41,11 +41,11 @@ describe Gutentag::Tag, :type => :model do
 
   describe '#name' do
     before :each do
-      allow(Gutentag::TagName).to receive(:call).and_return('waffles')
+      allow(Gutentag.normaliser).to receive(:call).and_return('waffles')
     end
 
     it "normalises the provided name" do
-      expect(Gutentag::TagName).to receive(:call).with('Pancakes').
+      allow(Gutentag.normaliser).to receive(:call).with('Pancakes').
         and_return('waffles')
 
       Gutentag::Tag.create!(:name => 'Pancakes')
