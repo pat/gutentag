@@ -1,5 +1,7 @@
 require 'spec_helper'
 
+SingleCov.covered!
+
 describe Gutentag::TagName do
   describe '.call' do
     it "downcases the provided name" do
