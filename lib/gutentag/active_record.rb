@@ -16,9 +16,19 @@ module Gutentag::ActiveRecord
     end
 
     def tagged_with(*tags)
-      joins(:tags).where(
-        Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
-      ).public_send UNIQUENESS_METHOD
+      tags.flatten!
+      scope =
+        if tags.all? { |t| t.is_a?(Integer) || t.is_a?(Gutentag::Tag) }
+          tag_ids = tags.map { |t| t.is_a?(Gutentag::Tag) ? t.id : t }
+          joins(:taggings).where(
+            Gutentag::Tagging.table_name => {:tag_id => tag_ids}
+          )
+        else
+          joins(:tags).where(
+            Gutentag::Tag.table_name => {:name => Gutentag::TagNames.call(tags)}
+          )
+        end
+      scope.public_send UNIQUENESS_METHOD
     end
   end
 
