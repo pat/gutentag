@@ -1,8 +1,4 @@
-require 'active_support/concern'
-
-module Gutentag::ActiveRecord
-  extend ActiveSupport::Concern
-
+class Gutentag::ActiveRecord
   def self.call(model)
     model.has_many :taggings, :class_name => 'Gutentag::Tagging',
       :as => :taggable, :dependent => :destroy
@@ -11,34 +7,10 @@ module Gutentag::ActiveRecord
 
     model.after_save :persist_tags
 
-    model.include self
-  end
-
-  UNIQUENESS_METHOD = ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct
-
-  module ClassMethods
-    def tagged_with(*tags)
-      Gutentag::TaggedWithQuery.call self, tags
-    end
-  end
-
-  def reset_tag_names
-    @tag_names = nil
-  end
-
-  def tag_names
-    @tag_names ||= tags.pluck(:name)
-  end
-
-  def tag_names=(names)
-    Gutentag.dirtier.call self, names if Gutentag.dirtier
-
-    @tag_names = names
-  end
-
-  private
-
-  def persist_tags
-    Gutentag::Persistence.new(self).persist
+    model.send :extend,  Gutentag::ActiveRecord::ClassMethods
+    model.send :include, Gutentag::ActiveRecord::InstanceMethods
   end
 end
+
+require 'gutentag/active_record/class_methods'
+require 'gutentag/active_record/instance_methods'

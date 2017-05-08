@@ -45,7 +45,7 @@ if defined?(Rails::Engine)
   require 'gutentag/engine'
 else
   require 'active_record'
-  ActiveRecord::Base.send :include, Gutentag::HasManyTags
+  ActiveRecord::Base.extend Gutentag::HasManyTags
   require_relative '../app/models/gutentag/tag'
   require_relative '../app/models/gutentag/tagging'
 end
