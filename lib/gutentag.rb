@@ -32,6 +32,7 @@ require 'gutentag/persistence'
 require 'gutentag/tag_name'
 require 'gutentag/tag_names'
 require 'gutentag/tag_validations'
+require 'gutentag/tagged_with_query'
 
 if ActiveRecord::VERSION::MAJOR == 3
   Gutentag.dirtier = Gutentag::Dirty
