@@ -13,7 +13,7 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 * [Usage](#usage)
 * [Installation](#installation)
 * [Upgrading](#upgrading)
-* [Contribution](#contributing)
+* [Contribution](#contribution)
 * [Licence](#licence)
 
 <h2 id="usage">Usage</h2>
