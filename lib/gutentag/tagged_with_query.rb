@@ -1,17 +1,8 @@
 class Gutentag::TaggedWithQuery
   UNIQUENESS_METHOD = (ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct)
 
-  def self.call(model, arguments)
-    case arguments.first
-    when Hash
-      new(model, arguments.first).call
-    when Integer
-      new(model, :ids => arguments).call
-    when Gutentag::Tag
-      new(model, :tags => arguments).call
-    else
-      new(model, :names => arguments).call
-    end
+  def self.call(model, options)
+    new(model, options).call
   end
 
   def initialize(model, options)
