@@ -1,6 +1,6 @@
 require 'spec_helper'
 
-SingleCov.covered! uncovered: 7
+SingleCov.covered! :uncovered => 8
 
 describe Gutentag do
   describe '.normalizer' do
