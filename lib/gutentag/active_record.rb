@@ -15,8 +15,8 @@ module Gutentag::ActiveRecord
       after_save :persist_tags
     end
 
-    def tagged_with(*tags)
-      Gutentag::TaggedWithQuery.call self, tags
+    def tagged_with(*options)
+      Gutentag::TaggedWithQuery.call self, options.flatten
     end
   end
 

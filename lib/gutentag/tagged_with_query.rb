@@ -1,13 +1,22 @@
 class Gutentag::TaggedWithQuery
   UNIQUENESS_METHOD = (ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct)
 
-  def self.call(model, tags)
-    new(model, tags).call
+  def self.call(model, arguments)
+    case arguments.first
+    when Hash
+      new(model, arguments.first).call
+    when Integer
+      new(model, :ids => arguments).call
+    when Gutentag::Tag
+      new(model, :tags => arguments).call
+    else
+      new(model, :names => arguments).call
+    end
   end
 
-  def initialize(model, tags)
-    @model = model
-    @tags  = tags.flatten
+  def initialize(model, options)
+    @model   = model
+    @options = options
   end
 
   def call
@@ -16,10 +25,10 @@ class Gutentag::TaggedWithQuery
 
   private
 
-  attr_reader :model, :tags
+  attr_reader :model, :options
 
   def ids?
-    tags.all? { |tag| tag.is_a? Integer }
+    options[:ids].present? || options[:tags].present?
   end
 
   def id_query
@@ -34,25 +43,15 @@ class Gutentag::TaggedWithQuery
     )
   end
 
-  def objects?
-    tags.all? { |tag| tag.is_a? Gutentag::Tag }
-  end
-
   def query
-    (ids? || objects?) ? id_query : name_query
+    ids? ? id_query : name_query
   end
 
   def tag_ids
-    return tags if ids?
-
-    tags.collect &:id
-  end
-
-  def tag_name(tag)
-    Gutentag.normaliser.call(tag.is_a?(Gutentag::Tag) ? tag.name : tag)
+    options[:ids] || options[:tags].collect(&:id)
   end
 
   def tag_names
-    tags.collect { |tag| tag_name(tag) }
+    options[:names].collect { |tag| Gutentag.normaliser.call(tag) }
   end
 end
