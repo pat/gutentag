@@ -29,14 +29,9 @@ class Gutentag::TaggedWithQuery
   end
 
   def name_query
-    tag_names = tags.map { |tag| tag_name(tag) }
     model.joins(:tags).where(
       Gutentag::Tag.table_name => {:name => tag_names}
     )
-  end
-
-  def tag_name(tag)
-    Gutentag.normaliser.call(tag.is_a?(Gutentag::Tag) ? tag.name : tag)
   end
 
   def objects?
@@ -51,5 +46,13 @@ class Gutentag::TaggedWithQuery
     return tags if ids?
 
     tags.collect &:id
+  end
+
+  def tag_name(tag)
+    Gutentag.normaliser.call(tag.is_a?(Gutentag::Tag) ? tag.name : tag)
+  end
+
+  def tag_names
+    tags.collect { |tag| tag_name(tag) }
   end
 end
