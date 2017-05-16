@@ -48,8 +48,8 @@ article.save
 You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
 
 ```Ruby
-Article.tagged_with('tag1', 'tag2')
-Article.tagged_with(Gutentag::Tag.where(name: ['tag1', 'tag2']))
+Article.tagged_with(:names => ['tag1', 'tag2'])
+Article.tagged_with(:tags => Gutentag::Tag.where(name: ['tag1', 'tag2']))
 # => [#<Article id: "123">]
 ```
 
