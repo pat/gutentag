@@ -39,10 +39,10 @@ class Gutentag::TaggedWithQuery
   end
 
   def tag_ids
-    options[:ids] || options[:tags].collect(&:id)
+    options[:ids] || Array(options[:tags]).collect(&:id)
   end
 
   def tag_names
-    options[:names].collect { |tag| Gutentag.normaliser.call(tag) }
+    Array(options[:names]).collect { |tag| Gutentag.normaliser.call(tag) }
   end
 end
