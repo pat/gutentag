@@ -1,6 +1,7 @@
 require 'spec_helper'
 
 SingleCov.covered!
+SingleCov.covered! file: "lib/gutentag/tagged_with_query.rb"
 
 describe Gutentag::ActiveRecord do
   describe '.tagged_with' do
@@ -35,6 +36,14 @@ describe Gutentag::ActiveRecord do
 
     context 'given a single tag name[symbol]' do
       subject { Article.tagged_with(:melborne) }
+
+      it { expect(subject.count).to eq 2 }
+      it { is_expected.to include melborne_article, melborne_oregon_article }
+      it { is_expected.not_to include oregon_article }
+    end
+
+    context 'given a denormalized tag name' do
+      subject { Article.tagged_with("MelbornE") }
 
       it { expect(subject.count).to eq 2 }
       it { is_expected.to include melborne_article, melborne_oregon_article }
