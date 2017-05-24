@@ -18,13 +18,9 @@ class Gutentag::TaggedWithQuery
 
   attr_reader :model, :options
 
-  def ids?
-    options[:ids].present? || options[:tags].present?
-  end
-
-  def id_query
+  def id_query(ids)
     model.joins(:taggings).where(
-      Gutentag::Tagging.table_name => {:tag_id => tag_ids}
+      Gutentag::Tagging.table_name => {:tag_id => ids}
     )
   end
 
@@ -35,11 +31,13 @@ class Gutentag::TaggedWithQuery
   end
 
   def query
-    ids? ? id_query : name_query
-  end
-
-  def tag_ids
-    options[:ids] || Array(options[:tags]).collect(&:id)
+    if ids = options[:ids].presence
+      id_query(ids)
+    elsif tags = options[:tags].presence
+      id_query(Array(tags).map(&:id))
+    else
+      name_query
+    end
   end
 
   def tag_names
