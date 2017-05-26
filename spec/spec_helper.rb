@@ -5,8 +5,6 @@ SingleCov.setup :rspec
 
 Bundler.require :default, :development
 
-require 'active_record'
-ActiveRecord::Schema.verbose = false
 Combustion.initialize! :active_record
 
 require 'rspec/rails'
