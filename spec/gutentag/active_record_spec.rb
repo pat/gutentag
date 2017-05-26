@@ -99,6 +99,8 @@ describe Gutentag::ActiveRecord do
     end
 
     context "deprecated" do
+      before { expect(ActiveSupport::Deprecation).to receive(:warn) }
+
       context 'given a single tag name' do
         subject { Article.tagged_with('melbourne') }
 
