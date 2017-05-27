@@ -31,10 +31,10 @@ class Gutentag::TaggedWithQuery
   end
 
   def query
-    if ids = options[:ids].presence
-      id_query(ids)
-    elsif tags = options[:tags].presence
-      id_query(Array(tags).map(&:id))
+    if options[:ids]
+      id_query options[:ids]
+    elsif options[:tags]
+      id_query Array(options[:tags]).map(&:id)
     else
       name_query
     end
