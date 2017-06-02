@@ -11,7 +11,7 @@ when "mysql", "mysql2"
 when "postgres", "postgresql", "pg"
   "postgres://localhost/gutentag"
 else
-  "sqlite:///#{File.expand_path("spec/internal/db/gutentag_test.sqlite")}"
+  "sqlite3:///#{File.expand_path("spec/internal/db/gutentag_test.sqlite")}"
 end
 
 Combustion.initialize! :active_record
