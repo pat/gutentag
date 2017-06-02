@@ -5,6 +5,15 @@ SingleCov.setup :rspec
 
 Bundler.require :default, :development
 
+ENV["DATABASE_URL"] ||= case ENV["DATABASE"]
+when "mysql", "mysql2"
+  "mysql2://root@localhost/gutentag"
+when "postgres", "postgresql", "pg"
+  "postgres://localhost/gutentag"
+else
+  "sqlite:///#{File.expand_path("spec/internal/db/gutentag_test.sqlite")}"
+end
+
 Combustion.initialize! :active_record
 
 require 'rspec/rails'
