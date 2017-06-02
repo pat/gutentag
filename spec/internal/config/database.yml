@@ -1,2 +1,14 @@
+<% if ENV["DATABASE"] == "mysql" %>
 test:
-  url: <%= ENV["DATABASE_URL"] %>
+  adapter: mysql2
+  database: gutentag
+  username: root
+<% elsif ENV["DATABASE"] == "postgres" %>
+test:
+  adapter: postgresql
+  database: gutentag
+<% else %>
+test:
+  adapter: sqlite3
+  database: db/gutentag.sqlite
+<% end %>
