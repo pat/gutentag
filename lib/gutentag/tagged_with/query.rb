@@ -1,6 +1,4 @@
 class Gutentag::TaggedWith::Query
-  UNIQUENESS_METHOD = (ActiveRecord::VERSION::MAJOR == 3 ? :uniq : :distinct)
-
   def initialize(model, values, match)
     @model  = model
     @values = Array values
@@ -8,11 +6,7 @@ class Gutentag::TaggedWith::Query
   end
 
   def call
-    if match == :any || values.length == 1
-      query.public_send UNIQUENESS_METHOD
-    else
-      query.having("COUNT(#{model_id}) = #{values.length}").group(model_id)
-    end
+    model.where "#{model_id} IN (#{query.to_sql})"
   end
 
   private
@@ -24,8 +18,8 @@ class Gutentag::TaggedWith::Query
   end
 
   def query
-    model.joins(join).where(
-      join_model.table_name => {column => values}
-    )
+    return taggable_ids_query if match == :any || values.length == 1
+
+    taggable_ids_query.having("COUNT(*) = #{values.length}").group(:taggable_id)
   end
 end

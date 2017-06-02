@@ -7,15 +7,9 @@ class Gutentag::TaggedWith::NameQuery < Gutentag::TaggedWith::Query
 
   private
 
-  def column
-    :name
-  end
-
-  def join
-    :tags
-  end
-
-  def join_model
-    Gutentag::Tag
+  def taggable_ids_query
+    Gutentag::Tagging.joins(:tag).select(:taggable_id).
+      where(:taggable_type => model).
+      where(Gutentag::Tag.table_name => {:name => values})
   end
 end
