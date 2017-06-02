@@ -111,6 +111,14 @@ describe Gutentag::ActiveRecord do
       it { is_expected.not_to include oregon_article, melbourne_article }
     end
 
+    context 'matching against all tag ids' do
+      subject { Article.tagged_with(:ids => Gutentag::Tag.where(:name => %w(melbourne oregon)).pluck(:id), :match => :all) }
+
+      it { expect(subject.count).to eq 1 }
+      it { is_expected.to include melbourne_oregon_article }
+      it { is_expected.not_to include oregon_article, melbourne_article }
+    end
+
     context 'matching against all one tag is the same as any' do
       subject { Article.tagged_with(:names => %w(melbourne), :match => :all) }
 
