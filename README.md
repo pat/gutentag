@@ -45,12 +45,22 @@ article.tag_names << 'ruby'
 article.save
 ```
 
-You can also query for instances with specified tags. This is OR logic, not AND - it'll match any instances that have *any* of the tags or tag names.
+You can also query for instances with specified tags. The default `:match` mode is `:any`, and so provides OR logic, not AND - it'll match any instances that have _any_ of the tags or tag names:
 
 ```Ruby
-Article.tagged_with(:names => ['tag1', 'tag2'])
-Article.tagged_with(:tags => Gutentag::Tag.where(name: ['tag1', 'tag2']))
-# => [#<Article id: "123">]
+Article.tagged_with(:names => ['tag1', 'tag2'], :match => :any)
+Article.tagged_with(
+  :tags  => Gutentag::Tag.where(name: ['tag1', 'tag2']),
+  :match => :any
+)
+Article.tagged_with(:ids => [tag_id], :match => :any)
+```
+
+To return records that have _all_ specified tags, use `:match => :all`:
+
+```ruby
+# Returns all articles that have *both* tag_a and tag_b.
+Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 ```
 
 <h2 id="installation">Installation</h2>
@@ -94,6 +104,13 @@ add_index :gutentag_tags, :taggings_count
 ```
 
 <h2 id="upgrading">Upgrading</h2>
+
+### 0.9.0
+
+* In your models with tags, change `has_many_tags` to `Gutentag::ActiveRecord.call self`.
+* Any calls to `tagged_with` should change from `Model.tagged_with('ruby', 'pancakes')` to `Model.tagged_with(:names => ['ruby', 'pancakes'])`.
+
+In both of the above cases, the old behaviour will continue to work for 0.9.x releases, but with a deprecation warning.
 
 ### 0.8.0
 
