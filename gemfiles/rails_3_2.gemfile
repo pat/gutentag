@@ -6,5 +6,6 @@ gem "test-unit", :platform => :ruby_22
 gem "rack", "~> 1.0", :platforms => [:ruby_20, :ruby_21]
 gem "rails", "~> 3.2.22.5"
 gem "nokogiri", "~> 1.6.0", :platforms => [:ruby_20]
+gem "mysql2", "~> 0.3.10"
 
 gemspec :path => "../"
