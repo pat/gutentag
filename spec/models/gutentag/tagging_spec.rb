@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-SingleCov.covered!
-
 describe Gutentag::Tagging, :type => :model do
   describe '#valid?' do
     let(:tag)      { Gutentag::Tag.create! :name => 'pancakes' }

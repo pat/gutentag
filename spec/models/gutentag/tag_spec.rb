@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-SingleCov.covered!
-
 describe Gutentag::Tag, :type => :model do
   describe '.find_by_name' do
     it "returns a tag with the same name" do

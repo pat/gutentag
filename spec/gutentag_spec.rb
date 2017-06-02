@@ -1,7 +1,5 @@
 require 'spec_helper'
 
-SingleCov.covered! :uncovered => 8
-
 describe Gutentag do
   describe '.normalizer' do
     it "downcases the provided name" do

@@ -1,8 +1,5 @@
 require 'spec_helper'
 
-SingleCov.covered!
-SingleCov.covered! file: "lib/gutentag/tagged_with_query.rb"
-
 describe Gutentag::ActiveRecord do
   describe '.tagged_with' do
     let!(:melbourne_article) do
