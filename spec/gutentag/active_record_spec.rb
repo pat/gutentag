@@ -98,6 +98,14 @@ describe Gutentag::ActiveRecord do
       it { is_expected.not_to include oregon_article, melbourne_oregon_article }
     end
 
+    context 'appended onto a relation' do
+      subject { Article.where(title: 'Overview').tagged_with(:names => %w(melbourne oregon)) }
+
+      it { expect(subject.count).to eq 1 }
+      it { is_expected.to include melbourne_article }
+      it { is_expected.not_to include oregon_article, melbourne_oregon_article }
+    end
+
     context "deprecated" do
       before { expect(ActiveSupport::Deprecation).to receive(:warn) }
 
