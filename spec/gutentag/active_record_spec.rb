@@ -103,6 +103,22 @@ describe Gutentag::ActiveRecord do
       it { is_expected.not_to include oregon_article, melbourne_oregon_article }
     end
 
+    context 'matching against all tags' do
+      subject { Article.tagged_with(:names => %w(melbourne oregon), :match => :all) }
+
+      it { expect(subject.count).to eq 1 }
+      it { is_expected.to include melbourne_oregon_article }
+      it { is_expected.not_to include oregon_article, melbourne_article }
+    end
+
+    context 'matching against all one tag is the same as any' do
+      subject { Article.tagged_with(:names => %w(melbourne), :match => :all) }
+
+      it { expect(subject.count).to eq 2 }
+      it { is_expected.to include melbourne_article, melbourne_oregon_article }
+      it { is_expected.not_to include oregon_article }
+    end
+
     context "deprecated" do
       before { expect(ActiveSupport::Deprecation).to receive(:warn) }
 

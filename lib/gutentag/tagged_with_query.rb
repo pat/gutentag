@@ -11,7 +11,16 @@ class Gutentag::TaggedWithQuery
   end
 
   def call
-    query.public_send UNIQUENESS_METHOD
+    case options[:match]
+    when :all
+      if values.length == 1
+        query.public_send UNIQUENESS_METHOD
+      else
+        query.having("COUNT(#{model_id}) = #{values.length}").group(model_id)
+      end
+    else
+      query.public_send UNIQUENESS_METHOD
+    end
   end
 
   private
@@ -22,6 +31,10 @@ class Gutentag::TaggedWithQuery
     model.joins(:taggings).where(
       Gutentag::Tagging.table_name => {:tag_id => ids}
     )
+  end
+
+  def model_id
+    "#{model.quoted_table_name}.#{model.quoted_primary_key}"
   end
 
   def name_query
@@ -42,5 +55,9 @@ class Gutentag::TaggedWithQuery
 
   def tag_names
     Array(options[:names]).collect { |tag| Gutentag.normaliser.call(tag) }
+  end
+
+  def values
+    options[:ids] || options[:names] || options[:tags]
   end
 end
