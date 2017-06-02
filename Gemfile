@@ -9,4 +9,4 @@ gem 'nokogiri',   '~> 1.6.0' if RUBY_VERSION.to_f <= 2.0
 gem 'combustion', '~> 0.6',
   :git    => 'https://github.com/pat/combustion.git',
   :branch => 'master',
-  :ref    => '4544ed7da0'
+  :ref    => 'ef434634d7'
