@@ -1,5 +1,4 @@
 require 'active_record/version'
-require 'active_support/deprecation'
 
 module Gutentag
   def self.dirtier
