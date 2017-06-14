@@ -1,3 +1,4 @@
 *.lock
+gemfiles
 pkg/*
 spec/internal/db/*.sqlite
