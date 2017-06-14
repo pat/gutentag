@@ -14,13 +14,13 @@ appraise 'rails_4_1' do
 end if RUBY_VERSION.to_f < 2.4
 
 appraise 'rails_4_2' do
-  gem 'rails',    '~> 4.2.7'
+  gem 'rails',    '~> 4.2.8'
 end if RUBY_VERSION.to_f < 2.4
 
 appraise 'rails_5_0' do
-  gem 'rails', '~> 5.0.1'
+  gem 'rails', '~> 5.0.3'
 end if RUBY_VERSION.to_f >= 2.2 && RUBY_PLATFORM != "java"
 
 appraise 'rails_5_1' do
-  gem 'rails', '~> 5.1.0'
+  gem 'rails', '~> 5.1.1'
 end if RUBY_VERSION.to_f >= 2.2 && RUBY_PLATFORM != "java"
