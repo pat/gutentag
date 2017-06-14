@@ -1,16 +1,16 @@
 appraise 'rails_3_2' do
   gem 'rails',    '~> 3.2.22.5'
-  gem 'mysql2',   '~> 0.3.10'
+  gem 'mysql2',   '~> 0.3.10', :platform => :ruby
 end if RUBY_VERSION.to_f <= 2.2
 
 appraise 'rails_4_0' do
   gem 'rails',    '~> 4.0.13'
-  gem 'mysql2',   '~> 0.3.10'
+  gem 'mysql2',   '~> 0.3.10', :platform => :ruby
 end if RUBY_VERSION.to_f < 2.4
 
 appraise 'rails_4_1' do
   gem 'rails',    '~> 4.1.16'
-  gem 'mysql2',   '~> 0.3.13'
+  gem 'mysql2',   '~> 0.3.13', :platform => :ruby
 end if RUBY_VERSION.to_f < 2.4
 
 appraise 'rails_4_2' do
