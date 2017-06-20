@@ -9,6 +9,7 @@ before_install:
   - gem install bundler
 before_script:
   - bundle exec appraisal install
+  - ./bin/literals
 env:
   - DATABASE=postgres
   - DATABASE=mysql
