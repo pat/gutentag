@@ -13,8 +13,3 @@ gem 'activerecord-jdbcpostgresql-adapter', '~> 1.3.23', :platform => :jruby
 gem 'activerecord-jdbcsqlite3-adapter',    '~> 1.3.23', :platform => :jruby
 
 gem 'activerecord', ['>= 3.2.22', '< 5'] if RUBY_PLATFORM == 'java'
-
-gem 'combustion', '~> 0.6',
-  :git    => 'https://github.com/pat/combustion.git',
-  :branch => 'master',
-  :ref    => 'ef434634d7'
