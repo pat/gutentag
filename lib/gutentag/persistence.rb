@@ -13,6 +13,7 @@ class Gutentag::Persistence
     add_new
 
     taggable.reset_tag_names
+    self
   end
 
   private
