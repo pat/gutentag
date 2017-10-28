@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::ChangeState
   attr_reader :taggable
   attr_writer :normaliser

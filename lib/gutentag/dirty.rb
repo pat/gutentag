@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::Dirty
   def self.call(instance, tag_names)
     new(instance, tag_names).call

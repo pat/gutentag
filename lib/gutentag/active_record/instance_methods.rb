@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 module Gutentag::ActiveRecord::InstanceMethods
   def reset_tag_names
     @tag_names = nil

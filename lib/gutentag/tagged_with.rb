@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::TaggedWith
   def self.call(model, options)
     new(model, options).call

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::ActiveRecord
   def self.call(model)
     model.has_many :taggings, :class_name => 'Gutentag::Tagging',

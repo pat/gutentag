@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::TaggedWith::IDQuery < Gutentag::TaggedWith::Query
   private
 

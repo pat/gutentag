@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::TagValidations
   def self.call(klass)
     new(klass).call

@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::TaggedWith::Query
   def initialize(model, values, match)
     @model  = model

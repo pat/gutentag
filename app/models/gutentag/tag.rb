@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 class Gutentag::Tag < ActiveRecord::Base
   self.table_name = 'gutentag_tags'
 
