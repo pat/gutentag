@@ -1,11 +1,12 @@
+require "forwardable"
+
 class Gutentag::Persistence
+  extend Forwardable
 
-  attr_writer :tagger, :normaliser
+  attr_writer :tagger
 
-  def initialize(taggable)
-    @taggable = taggable
-    @existing = normalised taggable.tags.collect(&:name)
-    @changes  = normalised taggable.tag_names
+  def initialize(change_state)
+    @change_state = change_state
   end
 
   def persist
@@ -17,29 +18,23 @@ class Gutentag::Persistence
 
   private
 
-  attr_reader :taggable, :existing, :changes
+  attr_reader :change_state
+
+  def_delegators :change_state, :taggable, :added, :removed
 
   def add_new
-    (changes - existing).each do |name|
+    added.each do |name|
       taggable.tags << tagger.find_or_create(name)
     end
   end
 
-  def normalised(names)
-    names.collect { |name| normaliser.call(name) }.uniq
-  end
-
   def remove_old
-    (existing - changes).each do |name|
+    removed.each do |name|
       taggable.tags.delete tagger.find_by_name(name)
     end
   end
 
   def tagger
     @tagger ||= Gutentag::Tag
-  end
-
-  def normaliser
-    @normaliser ||= Proc.new { |name| Gutentag.normaliser.call(name) }
   end
 end

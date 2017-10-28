@@ -27,6 +27,7 @@ module Gutentag
 end
 
 require 'gutentag/active_record'
+require 'gutentag/change_state'
 require 'gutentag/dirty'
 require 'gutentag/persistence'
 require 'gutentag/tag_validations'

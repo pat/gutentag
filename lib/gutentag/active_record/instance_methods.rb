@@ -16,6 +16,6 @@ module Gutentag::ActiveRecord::InstanceMethods
   private
 
   def persist_tags
-    Gutentag::Persistence.new(self).persist
+    Gutentag::Persistence.new(Gutentag::ChangeState.new(self)).persist
   end
 end
