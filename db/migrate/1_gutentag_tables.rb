@@ -14,7 +14,7 @@ class GutentagTables < superclass
     add_index :gutentag_taggings, :tag_id
     add_index :gutentag_taggings, [:taggable_type, :taggable_id]
     add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id],
-      :unique => true, :name => 'unique_taggings'
+      :unique => true, :name => "unique_taggings"
 
     create_table :gutentag_tags do |t|
       t.string :name, :null => false

@@ -35,6 +35,6 @@ class Gutentag::TaggedWith
   end
 end
 
-require 'gutentag/tagged_with/query'
-require 'gutentag/tagged_with/id_query'
-require 'gutentag/tagged_with/name_query'
+require "gutentag/tagged_with/query"
+require "gutentag/tagged_with/id_query"
+require "gutentag/tagged_with/name_query"

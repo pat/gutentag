@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-require 'active_record/version'
+require "active_record/version"
 
 module Gutentag
   def self.dirtier
@@ -28,12 +28,12 @@ module Gutentag
   end
 end
 
-require 'gutentag/active_record'
-require 'gutentag/change_state'
-require 'gutentag/dirty'
-require 'gutentag/persistence'
-require 'gutentag/tag_validations'
-require 'gutentag/tagged_with'
+require "gutentag/active_record"
+require "gutentag/change_state"
+require "gutentag/dirty"
+require "gutentag/persistence"
+require "gutentag/tag_validations"
+require "gutentag/tagged_with"
 
 if ActiveRecord::VERSION::MAJOR == 3
   Gutentag.dirtier = Gutentag::Dirty
@@ -42,9 +42,9 @@ elsif ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR < 2
 end
 
 if defined?(Rails::Engine)
-  require 'gutentag/engine'
+  require "gutentag/engine"
 else
-  require 'active_record'
-  require_relative '../app/models/gutentag/tag'
-  require_relative '../app/models/gutentag/tagging'
+  require "active_record"
+  require_relative "../app/models/gutentag/tag"
+  require_relative "../app/models/gutentag/tagging"
 end

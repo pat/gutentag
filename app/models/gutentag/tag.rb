@@ -1,14 +1,14 @@
 # frozen_string_literal: true
 
 class Gutentag::Tag < ActiveRecord::Base
-  self.table_name = 'gutentag_tags'
+  self.table_name = "gutentag_tags"
 
-  has_many :taggings, :class_name => 'Gutentag::Tagging',
+  has_many :taggings, :class_name => "Gutentag::Tagging",
     :dependent => :destroy
 
   attr_accessible :name if ActiveRecord::VERSION::MAJOR == 3
 
-  scope :by_weight, ->{ order('gutentag_tags.taggings_count DESC') }
+  scope :by_weight, ->{ order("gutentag_tags.taggings_count DESC") }
 
   Gutentag.tag_validations.call self
 

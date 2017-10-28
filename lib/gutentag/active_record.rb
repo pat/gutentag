@@ -2,9 +2,9 @@
 
 class Gutentag::ActiveRecord
   def self.call(model)
-    model.has_many :taggings, :class_name => 'Gutentag::Tagging',
+    model.has_many :taggings, :class_name => "Gutentag::Tagging",
       :as => :taggable, :dependent => :destroy
-    model.has_many :tags,     :class_name => 'Gutentag::Tag',
+    model.has_many :tags,     :class_name => "Gutentag::Tag",
       :through => :taggings
 
     model.after_save :persist_tags
@@ -14,5 +14,5 @@ class Gutentag::ActiveRecord
   end
 end
 
-require 'gutentag/active_record/class_methods'
-require 'gutentag/active_record/instance_methods'
+require "gutentag/active_record/class_methods"
+require "gutentag/active_record/instance_methods"

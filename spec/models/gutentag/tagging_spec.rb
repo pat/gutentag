@@ -1,10 +1,10 @@
 # frozen_string_literal: true
 
-require 'spec_helper'
+require "spec_helper"
 
 describe Gutentag::Tagging, :type => :model do
-  describe '#valid?' do
-    let(:tag)      { Gutentag::Tag.create! :name => 'pancakes' }
+  describe "#valid?" do
+    let(:tag)      { Gutentag::Tag.create! :name => "pancakes" }
     let(:taggable) { Article.create! }
 
     it "ensures tags are unique for any given taggable" do
