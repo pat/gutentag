@@ -6,7 +6,8 @@ class Gutentag::Dirty
   end
 
   def initialize(instance, tag_names)
-    @instance, @tag_names = instance, tag_names
+    @instance  = instance
+    @tag_names = tag_names
   end
 
   def call

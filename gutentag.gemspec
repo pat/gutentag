@@ -1,6 +1,6 @@
 # frozen_string_literal: true
-
 # -*- encoding: utf-8 -*-
+
 Gem::Specification.new do |s|
   s.name        = "gutentag"
   s.version     = "0.9.0"
@@ -22,4 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "combustion",   "0.7.0"
   s.add_development_dependency "rails"
   s.add_development_dependency "rspec-rails",  "~> 3.1"
+  s.add_development_dependency "rubocop",      "~> 0.51.0"
 end

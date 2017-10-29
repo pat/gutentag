@@ -1,5 +1,5 @@
 language: ruby
-script: bundle exec appraisal rspec
+script: bundle exec appraisal rake
 rvm:
   - 2.2.7
   - 2.3.4

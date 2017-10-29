@@ -2,3 +2,4 @@
 gemfiles
 pkg/*
 spec/internal/db/*.sqlite
+.rubocop-*-yml

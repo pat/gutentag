@@ -1,3 +1,5 @@
+# frozen_string_literal: true
+
 appraise "rails_3_2" do
   gem "rails",    "~> 3.2.22.5"
   gem "mysql2",   "~> 0.3.10", :platform => :ruby

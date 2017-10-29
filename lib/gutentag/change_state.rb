@@ -27,6 +27,6 @@ class Gutentag::ChangeState
   end
 
   def normaliser
-    @normaliser ||= Proc.new { |name| Gutentag.normaliser.call(name) }
+    @normaliser ||= proc { |name| Gutentag.normaliser.call(name) }
   end
 end

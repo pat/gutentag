@@ -57,72 +57,72 @@ describe "Managing tags via names" do
   end
 
   it "accepts a completely new set of tags" do
-    article.tag_names = ["portland", "oregon"]
+    article.tag_names = %w[ portland oregon ]
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland", "oregon"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland oregon ])
   end
 
   it "does not allow duplication of tags" do
     existing = Article.create
     existing.tags << Gutentag::Tag.create(:name => "portland")
 
-    article.tag_names = ["portland"]
+    article.tag_names = %w[ portland ]
     article.save!
 
     expect(existing.tag_ids).to eq(article.tag_ids)
   end
 
   it "appends tag names" do
-    article.tag_names  = ["portland"]
-    article.tag_names += ["oregon", "ruby"]
+    article.tag_names  = %w[ portland ]
+    article.tag_names += %w[ oregon ruby ]
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland", "oregon", "ruby"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland oregon ruby ])
   end
 
   it "does not repeat appended names that already exist" do
-    article.tag_names  = ["portland", "oregon"]
-    article.tag_names += ["oregon", "ruby"]
+    article.tag_names  = %w[ portland oregon ]
+    article.tag_names += %w[ oregon ruby ]
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland", "oregon", "ruby"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland oregon ruby ])
   end
 
   it "removes a single tag name" do
-    article.tag_names = ["portland", "oregon"]
+    article.tag_names = %w[ portland oregon ]
     article.tag_names.delete "oregon"
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland ])
   end
 
   it "removes tag names" do
-    article.tag_names  = ["portland", "oregon", "ruby"]
-    article.tag_names -= ["oregon", "ruby"]
+    article.tag_names  = %w[ portland oregon ruby ]
+    article.tag_names -= %w[ oregon ruby ]
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland ])
   end
 
   it "matches tag names ignoring case" do
-    article.tag_names  = ["portland"]
-    article.tag_names += ["Portland"]
+    article.tag_names  = %w[ portland ]
+    article.tag_names += %w[ Portland ]
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland ])
 
     article.tag_names << "Portland"
     article.save!
 
-    expect(article.tags.collect(&:name)).to eq(["portland"])
+    expect(article.tags.collect(&:name)).to eq(%w[ portland ])
   end
 
   it "allows setting of tag names on unpersisted objects" do
-    article = Article.new :tag_names => ["melbourne", "pancakes"]
+    article = Article.new :tag_names => %w[ melbourne pancakes ]
     article.save!
 
-    expect(article.tag_names).to eq(["melbourne", "pancakes"])
+    expect(article.tag_names).to eq(%w[ melbourne pancakes ])
   end
 
   it "allows overriding of tag_names=" do
