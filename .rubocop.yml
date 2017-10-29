@@ -1,24 +1,12 @@
 inherit_from:
   - https://gist.githubusercontent.com/pat/ba3b8ffb1901bfe5439b460943b6b019/raw/.rubocop.yml
 
-Layout/AlignParameters:
-  EnforcedStyle: with_fixed_indentation
-
-Layout/DotPosition:
-  EnforcedStyle: trailing
+AllCops:
+  TargetRubyVersion: 2.2
 
 Metrics/MethodLength:
   Exclude:
     - db/migrate/1_gutentag_tables.rb
-
-Style/ClassAndModuleChildren:
-  Enabled: false
-
-Style/Documentation:
-  Enabled: false
-
-Style/Lambda:
-  EnforcedStyle: lambda
 
 Style/MultilineIfModifier:
   Exclude:
