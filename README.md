@@ -68,7 +68,7 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 Get it into your Gemfile - and don't forget the version constraint!
 
 ```Ruby
-gem 'gutentag', '~> 0.9.0'
+gem 'gutentag', '~> 1.0.0'
 ```
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
@@ -104,6 +104,10 @@ add_index :gutentag_tags, :taggings_count
 ```
 
 <h2 id="upgrading">Upgrading</h2>
+
+### 1.0.0
+
+Behaviour that was deprecated in 0.9.0 (`has_many_tags`, `tagged_with` arguments) have now been removed.
 
 ### 0.9.0
 
