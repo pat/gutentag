@@ -63,5 +63,36 @@ describe Gutentag::Tag, :type => :model do
       tag = Gutentag::Tag.create(:name => "Pancakes")
       expect(tag.errors[:name].length).to eq(1)
     end
+
+    context "length of name" do
+      it "validates the length of the name" do
+        expect_any_instance_of(ActiveRecord::ConnectionAdapters::Column).
+          to receive(:limit) { 255 }.
+          at_least(:once)
+
+        reload_gutentag_tag
+
+        tag = Gutentag::Tag.new(:name => "a" * 256)
+        tag.valid?
+        expect(tag.errors[:name].length).to eq(1)
+      end
+
+      it "does not validate the length if the column has no limit" do
+        expect_any_instance_of(ActiveRecord::ConnectionAdapters::Column).
+          to receive(:limit) { nil }.
+          at_least(:once)
+
+        reload_gutentag_tag
+
+        tag = Gutentag::Tag.new(:name => "a" * 256)
+        tag.valid?
+        expect(tag.errors[:name].length).to eq(0)
+      end
+    end
   end
+end
+
+def reload_gutentag_tag
+  Gutentag.send(:remove_const, :Tag)
+  load "app/models/gutentag/tag.rb"
 end
