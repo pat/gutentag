@@ -139,6 +139,40 @@ rename_table :tags,     :gutentag_tags
 rename_table :taggings, :gutentag_taggings
 ```
 
+<h2 id="configuration">Configuration</h2>
+
+Gutentag tries to take a convention-over-configuration approach, while also striving to be modular enough to allow changes to behaviour in certain cases.
+
+### Tag validations
+
+The default validations on `Gutentag::Tag` are:
+
+* presence of the tag name.
+* case-insensitive uniqueness of the tag name.
+* maximum length of the tag name (if the column has a limit).
+
+You can view the logic for this in [`Gutentag::TagValidations`](blob/master/lib/gutentag/tag_validations.rb), and you can set an alternative if you wish:
+
+```ruby
+Gutentag.tag_validations = CustomTagValidations
+```
+
+The supplied value must respond to `call`, and the argument supplied is the model.
+
+### Tag normalisation
+
+Tag normalisation is used to convert supplied tag values consistently into string tag names. [The default](blob/master/lib/gutentag.rb#L15) is to convert the value into a string, and then to lower-case.
+
+If you want to do something different, provide an object that responds to call and accepts a single value to `Gutentag.normaliser`:
+
+```ruby
+Gutentag.normaliser = lambda { |value| value.to_s.upcase }
+```
+
+### Case-sensitive tags
+
+Gutentag ignores case by default, but can be customised to be case-sensitive by supplying your own validations and normaliser, as outlined by [Robin Mehner](https://github.com/rmehner) in [issue 42](https://github.com/pat/gutentag/issues/42). Further changes may be required for your schema though, depending on your database.
+
 <h2 id="contribution">Contribution</h2>
 
 Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
