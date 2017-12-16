@@ -13,6 +13,7 @@ This was built partly as a proof-of-concept, and partly to see how a tagging gem
 * [Usage](#usage)
 * [Installation](#installation)
 * [Upgrading](#upgrading)
+* [Configuration](#configuration)
 * [Contribution](#contribution)
 * [Licence](#licence)
 
@@ -151,7 +152,7 @@ The default validations on `Gutentag::Tag` are:
 * case-insensitive uniqueness of the tag name.
 * maximum length of the tag name (if the column has a limit).
 
-You can view the logic for this in [`Gutentag::TagValidations`](blob/master/lib/gutentag/tag_validations.rb), and you can set an alternative if you wish:
+You can view the logic for this in [`Gutentag::TagValidations`](lib/gutentag/tag_validations.rb), and you can set an alternative if you wish:
 
 ```ruby
 Gutentag.tag_validations = CustomTagValidations
@@ -161,7 +162,7 @@ The supplied value must respond to `call`, and the argument supplied is the mode
 
 ### Tag normalisation
 
-Tag normalisation is used to convert supplied tag values consistently into string tag names. [The default](blob/master/lib/gutentag.rb#L15) is to convert the value into a string, and then to lower-case.
+Tag normalisation is used to convert supplied tag values consistently into string tag names. [The default](lib/gutentag.rb#L15) is to convert the value into a string, and then to lower-case.
 
 If you want to do something different, provide an object that responds to call and accepts a single value to `Gutentag.normaliser`:
 
