@@ -63,5 +63,22 @@ describe Gutentag::Tag, :type => :model do
       tag = Gutentag::Tag.create(:name => "Pancakes")
       expect(tag.errors[:name].length).to eq(1)
     end
+
+    if ENV["DATABASE"] == "mysql" || (
+      Gem::Version.new(Rails.version) < Gem::Version.new("4.2.0")
+    )
+      # When using MySQL or Rails before 4.2, string columns convert to
+      # VARCHAR(255), therefore the column has a limit of 255, even though we
+      # did not specify a limit
+      it "validates the length of the name" do
+        tag = Gutentag::Tag.create(:name => "a" * 256)
+        expect(tag.errors[:name].length).to eq(1)
+      end
+    else
+      it "does not validate the length if the column has no limit" do
+        tag = Gutentag::Tag.create(:name => "a" * 256)
+        expect(tag.errors[:name].length).to eq(0)
+      end
+    end
   end
 end

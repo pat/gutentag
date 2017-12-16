@@ -13,6 +13,9 @@ class Gutentag::TagValidations
     klass.validates :name,
       :presence   => true,
       :uniqueness => {:case_sensitive => false}
+
+    limit = klass.columns_hash["name"].limit
+    klass.validates_length_of :name, :maximum => limit if limit.present?
   end
 
   private
