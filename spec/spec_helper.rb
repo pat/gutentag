@@ -5,7 +5,7 @@ require "bundler/setup"
 Bundler.require :default, :development
 
 Combustion.initialize! :active_record
-ActiveSupport.run_load_hooks :gutentag
+ActiveSupport.run_load_hooks :gutentag unless defined?(Gutentag::Engine)
 
 require "rspec/rails"
 
