@@ -1,6 +1,11 @@
 # frozen_string_literal: true
 
 class Gutentag::TagValidations
+  DEFAULTS = {
+    :presence   => true,
+    :uniqueness => {:case_sensitive => false}
+  }.freeze
+
   def self.call(klass)
     new(klass).call
   end
@@ -10,11 +15,7 @@ class Gutentag::TagValidations
   end
 
   def call
-    klass.validates :name,
-      :presence   => true,
-      :uniqueness => {:case_sensitive => false}
-
-    klass.validates_length_of :name, :maximum => limit if add_length_validation?
+    klass.validates :name, validation_options
   end
 
   private
@@ -27,5 +28,11 @@ class Gutentag::TagValidations
 
   def limit
     @limit ||= klass.columns_hash["name"].limit
+  end
+
+  def validation_options
+    return DEFAULTS unless add_length_validation?
+
+    DEFAULTS.merge :length => {:maximum => limit}
   end
 end
