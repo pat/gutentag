@@ -79,7 +79,17 @@ rake gutentag:install:migrations
 rake db:migrate
 ```
 
-If you want to use Gutentag outside of Rails, you can. However, this means you lose the migration import rake task. As a workaround, here's the expected schema (as of 0.7.0):
+### Without Rails
+
+If you want to use Gutentag outside of Rails, you can. However, there are two caveats:
+
+* You'll want to invoke this code once ActiveRecord's connected to the database:
+
+```ruby
+ActiveSupport.run_load_hooks :gutentag
+```
+
+* And you'll want to set up your database with the same schema (as importing in the migrations isn't possible without Rails). The schema from 0.7.0 onwards is below:
 
 ```Ruby
 create_table :gutentag_taggings do |t|

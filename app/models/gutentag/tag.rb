@@ -11,8 +11,6 @@ class Gutentag::Tag < ActiveRecord::Base
 
   scope :by_weight, lambda { order("gutentag_tags.taggings_count DESC") }
 
-  Gutentag.tag_validations.call self
-
   before_validation :normalise_name
 
   def self.find_by_name(name)

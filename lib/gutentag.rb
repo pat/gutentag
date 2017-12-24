@@ -41,6 +41,11 @@ elsif ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR < 2
   Gutentag.dirtier = Gutentag::Dirty
 end
 
+require "active_support/lazy_load_hooks"
+ActiveSupport.on_load(:gutentag) do
+  Gutentag.tag_validations.call Gutentag::Tag
+end
+
 if defined?(Rails::Engine)
   require "gutentag/engine"
 else
