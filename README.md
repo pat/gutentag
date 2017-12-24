@@ -116,7 +116,7 @@ add_index :gutentag_tags, :taggings_count
 
 <h2 id="upgrading">Upgrading</h2>
 
-Please refer to our [CHANGELOG](CHANGELOG.md).
+Please refer to the [CHANGELOG](CHANGELOG.md), which covers significant and breaking changes between versions.
 
 <h2 id="configuration">Configuration</h2>
 
