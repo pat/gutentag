@@ -1,0 +1,39 @@
+### 1.1.0
+
+No breaking changes.
+
+Thanks to [Robin](https://github.com/rmehner), Gutentag::Tag#name will now validate default database column lengths ([#41](https://github.com/pat/gutentag/pull/41)).
+
+### 1.0.0
+
+Behaviour that was deprecated in 0.9.0 (`has_many_tags`, `tagged_with` arguments) have now been removed.
+
+### 0.9.0
+
+* In your models with tags, change `has_many_tags` to `Gutentag::ActiveRecord.call self`.
+* Any calls to `tagged_with` should change from `Model.tagged_with('ruby', 'pancakes')` to `Model.tagged_with(:names => ['ruby', 'pancakes'])`.
+
+In both of the above cases, the old behaviour will continue to work for 0.9.x releases, but with a deprecation warning.
+
+### 0.8.0
+
+No breaking changes.
+
+### 0.7.0
+
+No breaking changes.
+
+### 0.6.0
+
+Rails 4.2 is supported as of Gutentag 0.6.0 - but please note that due to internal changes in ActiveRecord, changes to tag_names will no longer be tracked by your model's dirty state. This feature will continue to work in Rails 3.2 through to 4.1 though.
+
+### 0.5.0
+
+Between 0.4.0 and 0.5.0, Gutentag switched table names from `tags` and `taggings` to `gutentag_tags` and `gutentag_taggings`. This has been done to avoid conflicting with the more generic table names that may exist in Rails apps already.
+
+If you were using Gutentag 0.4.0 (or older) and now want to upgrade, you'll need to create a migration manually that renames these tables:
+
+```Ruby
+rename_table :tags,     :gutentag_tags
+rename_table :taggings, :gutentag_taggings
+```
