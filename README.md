@@ -6,7 +6,9 @@
 
 A good, simple, solid tagging extension for ActiveRecord.
 
-This was built partly as a proof-of-concept, and partly to see how a tagging gem could work when it's not all stuffed within models, and partly just because I wanted a simpler tagging library. If you want to know more, read [this blog post](http://freelancing-gods.com/posts/gutentag_simple_rails_tagging).
+This was initially built partly as a proof-of-concept, partly to see how a tagging gem could work when it's not all stuffed within models, and partly just because I wanted a simpler tagging library. It's now a solid little tagging Rails engine.
+
+If you want to know more, read [this blog post](http://freelancing-gods.com/posts/gutentag_simple_rails_tagging).
 
 ## Contents
 
@@ -65,6 +67,15 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 ```
 
 <h2 id="installation">Installation</h2>
+
+### Dependencies
+
+These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
+
+* Ruby: MRI v2.2-v2.5, JRuby v9.1
+* Rails/ActiveRecord: v3.2-v5.2
+
+### Installing
 
 Get it into your Gemfile - and don't forget the version constraint!
 
