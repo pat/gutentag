@@ -32,6 +32,7 @@ require "gutentag/active_record"
 require "gutentag/change_state"
 require "gutentag/dirty"
 require "gutentag/persistence"
+require "gutentag/remove_unused"
 require "gutentag/tag_validations"
 require "gutentag/tagged_with"
 

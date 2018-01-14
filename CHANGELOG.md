@@ -2,6 +2,12 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## Unreleased
+
+### Added
+
+* `Gutentag::RemoveUnused` is now present, and can be invoked with the `call` method. It will remove all unused tags (i.e. tags that aren't connected to any taggable objects). Related to [#19](https://github.com/pat/gutentag/issues/19).
+
 ## 2.0.0
 
 ### Changed
