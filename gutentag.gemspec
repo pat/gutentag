@@ -22,5 +22,5 @@ Gem::Specification.new do |s|
   s.add_development_dependency "combustion",   "0.7.0"
   s.add_development_dependency "rails"
   s.add_development_dependency "rspec-rails",  "~> 3.1"
-  s.add_development_dependency "rubocop",      "~> 0.51.0"
+  s.add_development_dependency "rubocop",      "~> 0.52.1"
 end
