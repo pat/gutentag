@@ -24,6 +24,8 @@ class Gutentag::TagValidations
 
   def add_length_validation?
     klass.table_exists? && limit.present?
+  rescue ActiveRecord::NoDatabaseError
+    false
   end
 
   def limit
