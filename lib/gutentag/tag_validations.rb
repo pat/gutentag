@@ -23,7 +23,11 @@ class Gutentag::TagValidations
   attr_reader :klass
 
   def add_length_validation?
-    klass.table_exists? && limit.present?
+    begin
+      klass.table_exists? && limit.present?
+    rescue ActiveRecord::NoDatabaseError
+      false
+    end
   end
 
   def limit
