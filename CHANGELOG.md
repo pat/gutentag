@@ -2,13 +2,17 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
-## Unreleased
+## 2.1.0 - 2018-02-01
 
 ### Added
 
 * `Gutentag::RemoveUnused` is now present, and can be invoked with the `call` method. It will remove all unused tags (i.e. tags that aren't connected to any taggable objects). Related to [#19](https://github.com/pat/gutentag/issues/19).
 
-## 2.0.0
+### Fixed
+
+* Tag validations logic fails gracefully when no database exists (Nishutosh Sharma in [#46](https://github.com/pat/gutentag/pull/46)).
+
+## 2.0.0 - 2017-12-27
 
 ### Changed
 
