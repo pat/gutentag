@@ -11,15 +11,15 @@ class Gutentag::Tag < ActiveRecord::Base
 
   scope :by_weight, lambda { order("gutentag_tags.taggings_count DESC") }
 
-  def name=(value)
-    super(Gutentag.normaliser.call(value))
-  end
-
   def self.find_by_name(name)
     where(:name => Gutentag.normaliser.call(name)).first
   end
 
   def self.find_or_create(name)
     find_by_name(name) || create(:name => name)
+  end
+
+  def name=(value)
+    super(Gutentag.normaliser.call(value))
   end
 end
