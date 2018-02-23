@@ -36,11 +36,7 @@ require "gutentag/remove_unused"
 require "gutentag/tag_validations"
 require "gutentag/tagged_with"
 
-if ActiveRecord::VERSION::MAJOR == 3
-  Gutentag.dirtier = Gutentag::Dirty
-elsif ActiveRecord::VERSION::MAJOR == 4 && ActiveRecord::VERSION::MINOR < 2
-  Gutentag.dirtier = Gutentag::Dirty
-end
+Gutentag.dirtier = Gutentag::Dirty if ActiveRecord::VERSION::STRING.to_f < 4.2
 
 require "active_support/lazy_load_hooks"
 ActiveSupport.on_load(:gutentag) do
