@@ -3,7 +3,7 @@
 require "spec_helper"
 
 describe "Managing tags via names" do
-  let(:article)   { Article.create }
+  let(:article) { Article.create }
 
   it "returns tag names" do
     melbourne = Gutentag::Tag.create :name => "melbourne"
@@ -18,25 +18,6 @@ describe "Managing tags via names" do
     article.save!
 
     expect(article.tags.collect(&:name)).to eq(["melbourne"])
-  end
-
-  it "makes model dirty when changing through tag_names" do
-    article.tag_names << "melbourne"
-    article.save!
-
-    article.tag_names = ["sydney"]
-
-    expect(article.changed_attributes.stringify_keys).
-      to eq("tag_names" => ["melbourne"])
-  end if Gutentag.dirtier
-
-  it "does not make model dirty when changing through tag_names" do
-    article.tag_names << "melbourne"
-    article.save!
-
-    article.tag_names = ["melbourne"]
-
-    expect(article.changed_attributes).to eq({})
   end
 
   it "allows for different tag normalisation" do

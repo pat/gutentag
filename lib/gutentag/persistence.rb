@@ -14,8 +14,6 @@ class Gutentag::Persistence
   def persist
     remove_old
     add_new
-
-    taggable.reset_tag_names
   end
 
   private

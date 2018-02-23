@@ -1,6 +1,7 @@
 # frozen_string_literal: true
 
-module Gutentag::ActiveRecord::InstanceMethods
+# For Rails <= 4.1
+module Gutentag::ActiveRecord::LegacyInstanceMethods
   def reset_tag_names
     @tag_names = nil
   end

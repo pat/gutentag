@@ -11,7 +11,10 @@ class Gutentag::Dirty
   end
 
   def call
-    instance.changed_attributes[:tag_names] = existing if changes.present?
+    return unless changes.present?
+
+    instance.tag_names_will_change!
+    instance.changed_attributes[:tag_names] = existing
   end
 
   private
