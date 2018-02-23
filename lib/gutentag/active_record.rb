@@ -44,7 +44,7 @@ class Gutentag::ActiveRecord
     if legacy?
       model.after_save :reset_tag_names
     else
-      model.after_commit :reset_tag_names, on: [:create, :update]
+      model.after_commit :reset_tag_names, :on => %i[ create update ]
     end
   end
 

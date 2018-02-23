@@ -7,7 +7,7 @@ module Gutentag::ActiveRecord::ModernInstanceMethods
   end
 
   def tag_names
-    self.tag_names= tags.pluck(:name) if super.nil?
+    self.tag_names = tags.pluck(:name) if super.nil?
 
     super
   end
