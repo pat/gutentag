@@ -11,8 +11,19 @@ require "rspec/rails"
 
 RSpec.configure do |config|
   if config.respond_to?(:use_transactional_tests)
-    config.use_transactional_tests = true
+    config.use_transactional_tests = false
   else
-    config.use_transactional_fixtures = true
+    config.use_transactional_fixtures = false
+  end
+
+  config.before(:suite) do
+    DatabaseCleaner.strategy = :truncation
+    DatabaseCleaner.clean_with(:truncation)
+  end
+
+  config.around(:each) do |example|
+    DatabaseCleaner.cleaning do
+      example.run
+    end
   end
 end
