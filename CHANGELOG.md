@@ -4,6 +4,10 @@ All notable changes to this project (at least, from v0.5.0 onwards) will be docu
 
 ## Unreleased
 
+### Added
+
+* Dirty state support for `tag_names` is now available for Rails 4.2 onwards, and is more reliable for Rails 3.2-4.1 (supporting all known methods, such as `tag_names_changed?`, `previous_changes`, etc.)
+
 ### Changed
 
 * Switch normalising of tag names from a callback within `Gutentag::Tag` to `#name=` ([Tomasz Ras](https://github.com/RasMachineMan) in [#47](https://github.com/pat/gutentag/pull/47)).
