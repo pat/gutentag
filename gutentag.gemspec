@@ -3,7 +3,7 @@
 
 Gem::Specification.new do |s|
   s.name        = "gutentag"
-  s.version     = "2.1.0"
+  s.version     = "2.2.0"
   s.authors     = ["Pat Allan"]
   s.email       = ["pat@freelancing-gods.com"]
   s.homepage    = "https://github.com/pat/gutentag"
