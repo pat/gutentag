@@ -17,7 +17,7 @@ end if RUBY_VERSION.to_f < 2.4
 
 appraise "rails_4_2" do
   gem "rails",    "~> 4.2.8"
-end if RUBY_VERSION.to_f < 2.4
+end
 
 appraise "rails_5_0" do
   gem "rails", "~> 5.0.3"
