@@ -109,4 +109,11 @@ describe "Managing tags via names" do
   it "allows overriding of tag_names=" do
     expect(Article.instance_methods(false)).to_not include(:tag_names=)
   end
+
+  it "returns known tag names from a freshly loaded object" do
+    article.tag_names << "melbourne"
+    article.save!
+
+    expect(Article.find(article.id).tag_names).to eq(["melbourne"])
+  end
 end
