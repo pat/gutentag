@@ -80,7 +80,7 @@ These are the versions the test suite runs against. It's possible it may work on
 Get it into your Gemfile - and don't forget the version constraint!
 
 ```Ruby
-gem 'gutentag', '~> 2.2.0'
+gem 'gutentag', '~> 2.2.1'
 ```
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
