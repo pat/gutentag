@@ -2,6 +2,12 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## Unreleased
+
+### Fixed
+
+* Fix `tag_names` to return persisted values on a fresh load of a tagged object (which involved distinguishing Rails 4.2 behaviour from more recent approaches).
+
 ## 2.2.0 - 2018-03-04
 
 ### Added
