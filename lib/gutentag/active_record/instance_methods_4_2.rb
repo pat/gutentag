@@ -22,12 +22,6 @@ module Gutentag::ActiveRecord::InstanceMethods
     super
   end
 
-  def tag_names=(names)
-    Gutentag.dirtier.call self, names if Gutentag.dirtier
-
-    super
-  end
-
   private
 
   def persist_tags

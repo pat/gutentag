@@ -30,8 +30,6 @@ module Gutentag::ActiveRecord::InstanceMethods
     # tracking doesn't think the original value was nil.
     @attributes.write_from_database "tag_names", []
 
-    Gutentag.dirtier.call self, names if Gutentag.dirtier
-
     super
   end
 
