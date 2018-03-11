@@ -22,6 +22,10 @@ module Gutentag::ActiveRecord::InstanceMethods
     super
   end
 
+  def tag_names=(names)
+    super Gutentag::TagNames.call(names)
+  end
+
   private
 
   def persist_tags

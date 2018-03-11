@@ -116,4 +116,11 @@ describe "Managing tags via names" do
 
     expect(Article.find(article.id).tag_names).to eq(["melbourne"])
   end
+
+  it "ignores blank tags" do
+    article = Article.new :tag_names => ["", "melbourne"]
+    article.save!
+
+    expect(article.tag_names).to eq(%w[ melbourne ])
+  end
 end

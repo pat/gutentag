@@ -14,6 +14,8 @@ module Gutentag::ActiveRecord::InstanceMethods
   end
 
   def tag_names=(names)
+    names = Gutentag::TagNames.call(names)
+
     Gutentag.dirtier.call self, names if Gutentag.dirtier
 
     @tag_names = names
