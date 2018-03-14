@@ -8,6 +8,10 @@ All notable changes to this project (at least, from v0.5.0 onwards) will be docu
 
 * Filter out blank tag names when provided via `tag_names=` (as discussed in [#51](https://github.com/pat/gutentag/issues/51)).
 
+### Fixed
+
+* Tag validations logic fails gracefully when the database server cannot be reached.
+
 ## 2.2.1 - 2018-03-06
 
 ### Fixed

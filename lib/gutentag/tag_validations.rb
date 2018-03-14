@@ -1,10 +1,18 @@
 # frozen_string_literal: true
 
+require "active_record/errors"
+
 class Gutentag::TagValidations
   DEFAULTS = {
     :presence   => true,
     :uniqueness => {:case_sensitive => false}
   }.freeze
+  DATABASE_ERROR_CLASSES = lambda {
+    classes = [ActiveRecord::NoDatabaseError]
+    classes << Mysql2::Error     if defined?(::Mysql2)
+    classes << PG::ConnectionBad if defined?(::PG)
+    classes
+  }.call.freeze
 
   def self.call(klass)
     new(klass).call
@@ -24,7 +32,7 @@ class Gutentag::TagValidations
 
   def add_length_validation?
     klass.table_exists? && limit.present?
-  rescue ActiveRecord::NoDatabaseError
+  rescue *DATABASE_ERROR_CLASSES
     false
   end
 
