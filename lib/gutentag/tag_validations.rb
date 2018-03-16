@@ -27,7 +27,7 @@ class Gutentag::TagValidations
   end
 
   def call
-    klass.validates :name, validation_options
+    klass.validates :name, validation_options.dup
   end
 
   private
