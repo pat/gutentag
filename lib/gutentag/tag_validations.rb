@@ -1,5 +1,6 @@
 # frozen_string_literal: true
 
+require "active_model/errors"
 require "active_record/errors"
 
 class Gutentag::TagValidations
@@ -8,7 +9,10 @@ class Gutentag::TagValidations
     :uniqueness => {:case_sensitive => false}
   }.freeze
   DATABASE_ERROR_CLASSES = lambda {
-    classes = [ActiveRecord::NoDatabaseError]
+    classes = []
+    if ActiveRecord::VERSION::STRING.to_f > 4.0
+      classes << ActiveRecord::NoDatabaseError
+    end
     classes << Mysql2::Error     if defined?(::Mysql2)
     classes << PG::ConnectionBad if defined?(::PG)
     classes
