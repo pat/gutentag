@@ -2,7 +2,7 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
-## Unreleased
+## 2.3.0 - 2018-03-19
 
 ### Changed
 
