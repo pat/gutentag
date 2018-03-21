@@ -28,6 +28,6 @@ appraise "rails_5_1" do
 end if RUBY_VERSION.to_f >= 2.2 && RUBY_PLATFORM != "java"
 
 appraise "rails_5_2" do
-  gem "rails", "~> 5.2.0.rc1"
+  gem "rails", "~> 5.2.0.rc2"
   gem "pg",    "~> 1.0"
 end if RUBY_VERSION.to_f >= 2.2 && RUBY_PLATFORM != "java"
