@@ -34,13 +34,14 @@ require "gutentag/dirty"
 require "gutentag/persistence"
 require "gutentag/remove_unused"
 require "gutentag/tag_names"
-require "gutentag/tag_validations"
 require "gutentag/tagged_with"
 
 Gutentag.dirtier = Gutentag::Dirty if ActiveRecord::VERSION::STRING.to_f < 4.2
 
 require "active_support/lazy_load_hooks"
 ActiveSupport.on_load(:gutentag) do
+  require "gutentag/tag_validations"
+
   Gutentag.tag_validations.call Gutentag::Tag
 end
 
