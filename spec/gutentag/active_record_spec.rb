@@ -159,5 +159,14 @@ describe Gutentag::ActiveRecord do
       it { is_expected.to include melbourne_article, melbourne_oregon_article }
       it { is_expected.not_to include oregon_article }
     end
+
+    it "should work on STI subclasses" do
+      thinkpiece = Thinkpiece.create! :tag_names => ["pancakes"]
+
+      expect(thinkpiece.tags.reload.collect(&:name)).to eq(["pancakes"])
+      expect(
+        Thinkpiece.tagged_with(:names => "pancakes", :match => :any).to_a
+      ).to eq([thinkpiece])
+    end
   end
 end

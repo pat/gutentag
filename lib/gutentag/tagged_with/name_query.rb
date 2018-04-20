@@ -11,7 +11,7 @@ class Gutentag::TaggedWith::NameQuery < Gutentag::TaggedWith::Query
 
   def taggable_ids_query
     Gutentag::Tagging.joins(:tag).select(:taggable_id).
-      where(:taggable_type => model.name).
+      where(:taggable_type => model.base_class.name).
       where(Gutentag::Tag.table_name => {:name => values})
   end
 end

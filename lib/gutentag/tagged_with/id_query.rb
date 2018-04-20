@@ -5,7 +5,7 @@ class Gutentag::TaggedWith::IDQuery < Gutentag::TaggedWith::Query
 
   def taggable_ids_query
     Gutentag::Tagging.select(:taggable_id).
-      where(:taggable_type => model.name).
+      where(:taggable_type => model.base_class.name).
       where(:tag_id => values)
   end
 end
