@@ -2,6 +2,12 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.3.2 - 2018-04-27
+
+### Fixed
+
+* The `tagged_with` method now finds tagged objects belonging to STI models (as discussed in [#53](https://github.com/pat/gutentag/issues/53)).
+
 ## 2.3.1 - 2018-04-05
 
 ### Fixed
