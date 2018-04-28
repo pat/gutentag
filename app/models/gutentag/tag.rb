@@ -23,3 +23,6 @@ class Gutentag::Tag < ActiveRecord::Base
     super(Gutentag.normaliser.call(value))
   end
 end
+
+require "gutentag/tag_validations"
+Gutentag.tag_validations.call Gutentag::Tag
