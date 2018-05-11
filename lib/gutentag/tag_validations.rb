@@ -38,9 +38,9 @@ class Gutentag::TagValidations
     klass.table_exists? && limit.present?
   rescue *DATABASE_ERROR_CLASSES
     warn <<-MESSAGE
-The database is not currently available, and so Gutentag was not able to set up
-tag validations completely (in particular: adding a length limit to match
-database constraints).
+  The database is not currently available, and so Gutentag was not able to set
+  up tag validations completely (in particular: adding a length limit to match
+  database constraints).
     MESSAGE
     false
   end
