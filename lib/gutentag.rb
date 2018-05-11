@@ -42,6 +42,9 @@ if defined?(Rails::Engine)
   require "gutentag/engine"
 else
   require "active_record"
-  require_relative "../app/models/gutentag/tag"
-  require_relative "../app/models/gutentag/tagging"
+
+  Gutentag.autoload :Tag,
+    File.expand_path("../app/models/gutentag/tag", __dir__)
+  Gutentag.autoload :Tagging,
+    File.expand_path("../app/models/gutentag/tagging", __dir__)
 end

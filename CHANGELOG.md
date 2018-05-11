@@ -8,6 +8,7 @@ All notable changes to this project (at least, from v0.5.0 onwards) will be docu
 
 * Tag validation is now added only when the tag model is loaded, rather than when the app boots. This especially simplifies setup for non-Rails apps ([Michael Grosser](https://github.com/grosser) in [#54](https://github.com/pat/gutentag/pull/54)).
 * A warning is displayed if the tag model is referenced without a database being present.
+* Models are now lazily autoloaded for non-Rails apps (when `Rails::Engine` isn't present).
 
 ## 2.3.2 - 2018-04-27
 
