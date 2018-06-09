@@ -94,27 +94,19 @@ rake db:migrate
 
 If you want to use Gutentag outside of Rails, you can. However, there is one caveat: You'll want to set up your database with the same schema (as importing in the migrations isn't possible without Rails). The schema from 0.7.0 onwards is below:
 
-```Ruby
-create_table :gutentag_taggings do |t|
-  t.integer :tag_id,        null: false
-  t.integer :taggable_id,   null: false
-  t.string  :taggable_type, null: false
-  t.timestamps null: false
-end
-
-add_index :gutentag_taggings, :tag_id
-add_index :gutentag_taggings, [:taggable_type, :taggable_id]
-add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id],
-  unique: true, name: 'unique_taggings'
-
+```ruby
 create_table :gutentag_tags do |t|
-  t.string  :name,           null: false
-  t.integer :taggings_count, null: false, default: 0
-  t.timestamps null: false
+  t.string :name,           null: false, index: {unique: true}
+  t.bigint :taggings_count, null: false, index: true, default: 0
+  t.timestamps              null: false
 end
 
-add_index :gutentag_tags, :name, unique: true
-add_index :gutentag_tags, :taggings_count
+create_table :gutentag_taggings do |t|
+  t.references :tag,      null: false, index: true, foreign_key: {to_table: :gutentag_tags}
+  t.references :taggable, null: false, index: true, polymorphic: true
+  t.timestamps            null: false
+end
+add_index :gutentag_taggings, [:taggable_type, :taggable_id, :tag_id], unique: true, name: "gutentag_taggings_uniqueness"
 ```
 
 <h2 id="upgrading">Upgrading</h2>
