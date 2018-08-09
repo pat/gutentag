@@ -1,8 +1,8 @@
 # frozen_string_literal: true
 
-superclass = ActiveRecord::VERSION::MAJOR < 5 ?
+SUPERCLASS = ActiveRecord::VERSION::MAJOR < 5 ?
   ActiveRecord::Migration : ActiveRecord::Migration[4.2]
-class GutentagTables < superclass
+class GutentagTables < SUPERCLASS
   def up
     create_table :gutentag_taggings do |t|
       t.integer :tag_id,        :null => false
