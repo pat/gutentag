@@ -90,6 +90,8 @@ rake gutentag:install:migrations
 rake db:migrate
 ```
 
+If you're using UUID primary keys, make sure you alter the migration files before running `db:migrate` to use UUIDs for the `taggable_id` foreign key column (as noted in [issue 57](https://github.com/pat/gutentag/issues/57).)
+
 ### Without Rails
 
 If you want to use Gutentag outside of Rails, you can. However, there is one caveat: You'll want to set up your database with the same schema (as importing in the migrations isn't possible without Rails). The schema from 0.7.0 onwards is below:
