@@ -28,7 +28,7 @@ module Gutentag::ActiveRecord::InstanceMethods
   def tag_names=(names)
     # This value is about to be overwritten, but we want to make sure the change
     # tracking doesn't think the original value was nil.
-    @attributes.write_from_database "tag_names", []
+    @attributes.write_from_database "tag_names", tags.pluck(:name)
 
     super Gutentag::TagNames.call(names)
   end
