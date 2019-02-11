@@ -13,5 +13,6 @@ gem "sqlite3", "~> 1.3.13", :platform => :ruby
 gem "activerecord-jdbcmysql-adapter",      "~> 1.3.23", :platform => :jruby
 gem "activerecord-jdbcpostgresql-adapter", "~> 1.3.23", :platform => :jruby
 gem "activerecord-jdbcsqlite3-adapter",    "~> 1.3.23", :platform => :jruby
+gem "bundler",                             "~> 1.17",   :platform => :jruby
 
 gem "activerecord", [">= 3.2.22", "< 5"] if RUBY_PLATFORM == "java"
