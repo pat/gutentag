@@ -18,7 +18,7 @@ Gem::Specification.new do |s|
 
   s.add_development_dependency "appraisal",        "~> 2.1.0"
   s.add_development_dependency "bundler",          "~> 1.17"
-  s.add_development_dependency "combustion",       "~> 1.0"
+  s.add_development_dependency "combustion",       "~> 1.1"
   s.add_development_dependency "database_cleaner", "~> 1.6"
   s.add_development_dependency "rails"
   s.add_development_dependency "rspec-rails",      "~> 3.1"
