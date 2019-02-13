@@ -1,4 +1,5 @@
 language: ruby
+dist: xenial
 script: bundle exec appraisal rake
 rvm:
   - 2.2.10
@@ -8,12 +9,15 @@ rvm:
   - 2.6.1
   - jruby-9.2.5.0
 before_install:
-  - gem update --system
-  - gem uninstall bundler --all --ignore-dependencies --executables
-  - gem install bundler --version "~> 1.17"
+  - gem install bundler --version 1.17.3
+install:
+  - bundle _1.17.3_ install --jobs=3 --retry=3
 before_script:
   - bundle exec appraisal install
 env:
   - DATABASE=postgres
   - DATABASE=mysql
   - DATABASE=sqlite
+services:
+- mysql
+- postgresql
