@@ -3,6 +3,11 @@ inherit_from:
 
 AllCops:
   TargetRubyVersion: 2.2
+  Exclude:
+    - gemfiles/*.gemfile
+
+Layout/AlignHash:
+  EnforcedHashRocketStyle: table
 
 Metrics/MethodLength:
   Exclude:
