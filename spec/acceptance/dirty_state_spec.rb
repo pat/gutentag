@@ -27,7 +27,7 @@ RSpec.describe "Dirty state of tag names" do
 
   it "knows what tag names have changed" do
     article.tag_names = ["pancakes"]
-    article.save
+    article.save!
 
     expect(article.tag_names).to eq(["pancakes"])
 
@@ -48,5 +48,13 @@ RSpec.describe "Dirty state of tag names" do
       expect(article.tag_names_change_to_be_saved).to eq(nil)
       expect(article.tag_names_in_database).to eq(["pancakes"])
     end
+  end
+
+  it "knows when tags have not changed" do
+    article.tag_names = ["pancakes"]
+    article.save!
+
+    article.tag_names = ["pancakes"]
+    expect(article.changes).to eq({})
   end
 end
