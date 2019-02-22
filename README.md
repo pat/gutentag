@@ -72,8 +72,8 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 
 These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
 
-* Ruby: MRI v2.2-v2.5, JRuby v9.1
-* Rails/ActiveRecord: v3.2-v5.2
+* Ruby: MRI v2.2-v2.6, JRuby v9.2.5
+* Rails/ActiveRecord: v3.2-v6.0
 
 ### Installing
 

@@ -2,6 +2,17 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.4.1 - 2019-02-22
+
+### Changed
+
+* Tests are now run against Rails 6.0, MRI 2.6, JRuby 9.2.5.
+* The README documents a simpler migration ([seelensonne](https://github.com/seelensonne) in [#55](https://github.com/pat/gutentag/pull/55)).
+
+### Fixed
+
+* Do not record changes when tag_names did not change ([Stephen Oberther](https://github.com/smo921) in [#60](https://github.com/pat/gutentag/pull/60)).
+
 ## 2.4.0 - 2018-05-18
 
 ### Changed
