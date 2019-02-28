@@ -72,8 +72,10 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 
 These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
 
-* Ruby: MRI v2.2-v2.6, JRuby v9.2.5
-* Rails/ActiveRecord: v3.2-v6.0
+* Ruby: MRI v2.3-v2.6, JRuby v9.2.5
+* Rails/ActiveRecord: v4.0-v6.0
+
+If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that supported those versions is v2.4.1.
 
 ### Installing
 

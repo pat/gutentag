@@ -2,7 +2,6 @@ language: ruby
 dist: xenial
 script: bundle exec appraisal rake
 rvm:
-  - 2.2.10
   - 2.3.8
   - 2.4.5
   - 2.5.3
