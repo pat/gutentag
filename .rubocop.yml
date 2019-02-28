@@ -6,9 +6,6 @@ AllCops:
   Exclude:
     - gemfiles/*.gemfile
 
-Layout/AlignHash:
-  EnforcedHashRocketStyle: table
-
 Metrics/MethodLength:
   Exclude:
     - db/migrate/1_gutentag_tables.rb
