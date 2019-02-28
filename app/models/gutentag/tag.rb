@@ -19,6 +19,17 @@ class Gutentag::Tag < ActiveRecord::Base
     find_by_name(name) || create(:name => name)
   end
 
+  def self.names_for_scope(scope)
+    join_conditions = {:taggable_type => scope.name}
+    if scope.current_scope.present?
+      join_conditions[:taggable_id] = scope.select(:id)
+    end
+
+    joins(:taggings).where(
+      Gutentag::Tagging.table_name => join_conditions
+    ).distinct.pluck(:name)
+  end
+
   def name=(value)
     super(Gutentag.normaliser.call(value))
   end
