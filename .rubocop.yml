@@ -18,6 +18,3 @@ Style/MultilineIfModifier:
 Style/MultilineTernaryOperator:
   Exclude:
     - db/migrate/*.rb
-
-Style/SafeNavigation:
-  Enabled: false
