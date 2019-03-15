@@ -2,6 +2,18 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.5.0 - 2019-03-15
+
+**Pleease note this release ends official support of Rails 3.2 and Ruby (MRI) 2.2.** The code currently still works on Ruby 2.2, and all features except for the new `Gutentag::Tag.names_for_scope` method work in Rails 3.2, but they're no longer tested against, and cannot be guaranteed to work in future releases.
+
+### Added
+
+* Added the `Gutentag::Tag.names_for_scope(scope)` method, which accepts an ActiveRecord model or a relation, and returns all tag names associated to that model/relation.
+
+### Changed
+
+* Removing support for MRI 2.2 and Rails 3.2.
+
 ## 2.4.1 - 2019-02-22
 
 ### Changed

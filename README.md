@@ -75,14 +75,14 @@ These are the versions the test suite runs against. It's possible it may work on
 * Ruby: MRI v2.3-v2.6, JRuby v9.2.5
 * Rails/ActiveRecord: v4.0-v6.0
 
-If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that supported those versions is v2.4.1.
+If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that fully supported those versions is v2.4.1.
 
 ### Installing
 
 Get it into your Gemfile - and don't forget the version constraint!
 
 ```Ruby
-gem 'gutentag', '~> 2.4'
+gem 'gutentag', '~> 2.5'
 ```
 
 Next: your tags get persisted to your database, so let's import and run the migrations to get the tables set up:
