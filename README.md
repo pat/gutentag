@@ -16,6 +16,7 @@ If you want to know more, read [this blog post](http://freelancing-gods.com/post
 * [Installation](#installation)
 * [Upgrading](#upgrading)
 * [Configuration](#configuration)
+* [Extending](#extending)
 * [Contribution](#contribution)
 * [Licence](#licence)
 
@@ -150,6 +151,19 @@ Gutentag.normaliser = lambda { |value| value.to_s.upcase }
 ### Case-sensitive tags
 
 Gutentag ignores case by default, but can be customised to be case-sensitive by supplying your own validations and normaliser, as outlined by [Robin Mehner](https://github.com/rmehner) in [issue 42](https://github.com/pat/gutentag/issues/42). Further changes may be required for your schema though, depending on your database.
+
+<h2 id="extending">Extending</h2>
+
+If you need to extend Gutentag's models, you will need to wrap the `include` inside a `to_prepare` hook to ensure it's loaded consistently in all Rails environments:
+
+```ruby
+# config/initializers/gutentag.rb or equivalent
+Rails.application.config.to_prepare do
+  Gutentag::Tag.include TagExtensions
+end
+```
+
+Further discussion and examples of this can be found in [issue 65](https://github.com/pat/gutentag/issues/65).
 
 <h2 id="contribution">Contribution</h2>
 
