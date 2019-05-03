@@ -36,7 +36,7 @@ class Gutentag::TagValidations
 
   def add_length_validation?
     klass.table_exists? && limit.present?
-  rescue *DATABASE_ERROR_CLASSES
+  rescue *DATABASE_ERROR_CLASSES => _error
     warn <<-MESSAGE
   The database is not currently available, and so Gutentag was not able to set
   up tag validations completely (in particular: adding a length limit to match
