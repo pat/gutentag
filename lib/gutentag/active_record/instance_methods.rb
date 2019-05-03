@@ -30,7 +30,7 @@ module Gutentag::ActiveRecord::InstanceMethods
     # tracking doesn't think the original value was nil.
     @attributes.write_from_database "tag_names", tags.pluck(:name)
 
-    super Gutentag::TagNames.call(names).uniq
+    super Gutentag::TagNames.call(names)
   end
 
   private
