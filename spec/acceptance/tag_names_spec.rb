@@ -70,6 +70,13 @@ describe "Managing tags via names" do
     expect(article.tags.collect(&:name)).to eq(%w[ portland oregon ruby ])
   end
 
+  it "does not repeat appended names that exist in the array of strings" do
+    article.tag_names  = %w[ portland oregon ]
+    article.tag_names += %w[ oregon ruby ]
+
+    expect(article.tag_names).to match(%w[ portland oregon ruby ])
+  end
+
   it "removes a single tag name" do
     article.tag_names = %w[ portland oregon ]
     article.tag_names.delete "oregon"
