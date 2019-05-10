@@ -106,6 +106,11 @@ describe "Managing tags via names" do
     expect(article.tags.collect(&:name)).to eq(%w[ portland ])
   end
 
+  it "normalises tag names" do
+    article.tag_names = %w[ Perth ]
+    expect(article.tag_names).to eq(%w[ perth ])
+  end
+
   it "allows setting of tag names on unpersisted objects" do
     article = Article.new :tag_names => %w[ melbourne pancakes ]
     article.save!
