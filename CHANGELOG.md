@@ -2,6 +2,12 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.5.1 - 2019-05-10
+
+### Fixed
+
+* Ensuring consistent behaviour for tag_names array - names are not duplicated, and are normalised prior to saving (as discussed in [issue #66](https://github.com/pat/gutentag/issues/66)).
+
 ## 2.5.0 - 2019-03-15
 
 **Pleease note this release ends official support of Rails 3.2 and Ruby (MRI) 2.2.** The code currently still works on Ruby 2.2, and all features except for the new `Gutentag::Tag.names_for_scope` method work in Rails 3.2, but they're no longer tested against, and cannot be guaranteed to work in future releases.
