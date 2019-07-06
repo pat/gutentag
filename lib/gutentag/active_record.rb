@@ -31,7 +31,7 @@ class Gutentag::ActiveRecord
   end
 
   def add_attribute
-    if legacy?
+    if ActiveRecord::VERSION::STRING.to_f <= 4.2
       model.define_attribute_method "tag_names"
     else
       model.attribute "tag_names", ActiveRecord::Type::Value.new,

@@ -6,4 +6,10 @@ ActiveRecord::Schema.define do
     t.string :type
     t.timestamps :null => false
   end
+
+  create_table :comments, :force => true do |t|
+    t.references :article
+    t.string :name
+    t.text :text
+  end
 end

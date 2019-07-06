@@ -135,4 +135,8 @@ describe "Managing tags via names" do
 
     expect(article.tag_names).to eq(%w[ melbourne ])
   end
+
+  it "allows eager-loading of the model via an association" do
+    expect { Comment.eager_load(:article).to_a }.to_not raise_error
+  end
 end

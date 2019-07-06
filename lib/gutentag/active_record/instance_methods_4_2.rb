@@ -8,22 +8,25 @@ module Gutentag::ActiveRecord::InstanceMethods
   def reset_tag_names
     # Update the underlying value rather than going through the setter, to
     # ensure this update doesn't get marked as a 'change'.
-    self.tag_names = nil
+    @tag_names = nil
   end
 
   def tag_names
-    # If the underlying value is nil, we've not requested this from the
-    # database yet.
-    if read_attribute("tag_names") { nil }.nil?
-      self.tag_names = tags.pluck(:name)
+    @tag_names ||= begin
+      raw = tags.pluck(:name)
+      raw_write_attribute "tag_names", raw
+      raw
     end
-
-    # Use ActiveRecord's underlying implementation with change tracking.
-    super
   end
 
   def tag_names=(names)
-    super Gutentag::TagNames.call(names)
+    new_names = Gutentag::TagNames.call names
+    return if new_names.sort == tag_names.sort
+
+    tag_names_will_change!
+
+    write_attribute "tag_names", new_names
+    @tag_names = new_names
   end
 
   private
