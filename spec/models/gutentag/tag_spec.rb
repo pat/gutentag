@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Gutentag::Tag, :type => :model do
+RSpec.describe Gutentag::Tag, :type => :model do
   describe ".find_by_name" do
     it "returns a tag with the same name" do
       existing = Gutentag::Tag.create! :name => "pancakes"

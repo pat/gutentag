@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Gutentag::ActiveRecord do
+RSpec.describe Gutentag::ActiveRecord do
   describe ".tagged_with" do
     let!(:melbourne_article) do
       article = Article.create :title => "Overview"
