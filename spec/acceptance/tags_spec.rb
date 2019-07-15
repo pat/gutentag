@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Adding and removing tags" do
+RSpec.describe "Adding and removing tags" do
   let(:article)  { Article.create }
   let(:pancakes) { Gutentag::Tag.create :name => "pancakes" }
 

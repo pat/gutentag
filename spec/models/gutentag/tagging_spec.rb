@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Gutentag::Tagging, :type => :model do
+RSpec.describe Gutentag::Tagging, :type => :model do
   describe "#valid?" do
     let(:tag)      { Gutentag::Tag.create! :name => "pancakes" }
     let(:taggable) { Article.create! }

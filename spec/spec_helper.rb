@@ -12,6 +12,8 @@ ActiveSupport.run_load_hooks :gutentag unless defined?(Gutentag::Engine)
 require "rspec/rails"
 
 RSpec.configure do |config|
+  config.disable_monkey_patching!
+
   if config.respond_to?(:use_transactional_tests)
     config.use_transactional_tests = false
   else

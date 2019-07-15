@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Managing tags via names" do
+RSpec.describe "Managing tags via names" do
   let(:article) { Article.create }
 
   it "returns tag names" do

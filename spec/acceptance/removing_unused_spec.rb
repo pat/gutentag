@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe "Removing unused" do
+RSpec.describe "Removing unused" do
   let(:article) { Article.create }
 
   it "deletes only unused tags" do

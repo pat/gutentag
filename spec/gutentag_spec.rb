@@ -2,7 +2,7 @@
 
 require "spec_helper"
 
-describe Gutentag do
+RSpec.describe Gutentag do
   describe ".normalizer" do
     it "downcases the provided name" do
       expect(Gutentag.normaliser.call("Tasty Pancakes")).to eq("tasty pancakes")
