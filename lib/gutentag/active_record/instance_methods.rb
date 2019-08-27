@@ -2,6 +2,8 @@
 
 # For Rails 5.0+
 module Gutentag::ActiveRecord::InstanceMethods
+  AR_VERSION = ActiveRecord::VERSION::STRING.to_f
+
   # If the tag_names attribute was one of the modified values, then let's just
   # use the modifications, rather than overwriting the stored value.
   #
@@ -9,7 +11,12 @@ module Gutentag::ActiveRecord::InstanceMethods
   # the instance directly (e.g. article.tags << tag), which invokes the save
   # callbacks, but the old tag_names value is stored but not updated.
   def reset_tag_names
-    return if tag_names_previously_changed?
+    # Rails 5.1 introduces major changes to how ActiveModel::Dirty works:
+    # https://github.com/pat/gutentag/pull/70#issuecomment-524605448
+    # For Rails <5.1 we'll use *_previously_changed?
+    # and for 5.1+ we'll use saved_change_to_*?
+    return if AR_VERSION < 5.1 && tag_names_previously_changed?
+    return if AR_VERSION >= 5.1 && saved_change_to_tag_names?
 
     # Update the underlying value rather than going through the setter, to
     # ensure this update doesn't get marked as a 'change'.
