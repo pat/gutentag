@@ -27,4 +27,12 @@ RSpec.describe "Tag names for scopes" do
     expect(Gutentag::Tag.names_for_scope(Article)).
       to match_array(%w[ koala wombat cassowary ])
   end
+
+  it "returns an empty array for an empty scope" do
+    Article.create :title => "mammals", :tag_names => %w[ koala wombat ]
+    Article.create :title => "birds",   :tag_names => %w[ cassowary ]
+
+    expect(Gutentag::Tag.names_for_scope(Article.where(:title => "reptiles"))).
+      to match_array([])
+  end
 end
