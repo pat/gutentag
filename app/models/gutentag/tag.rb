@@ -21,8 +21,12 @@ class Gutentag::Tag < ActiveRecord::Base
 
   def self.names_for_scope(scope)
     join_conditions = {:taggable_type => scope.name}
-    if scope.current_scope.present?
-      join_conditions[:taggable_id] = scope.select(:id)
+    if scope.is_a?(ActiveRecord::Relation)
+      if scope.current_scope.present?
+        join_conditions[:taggable_id] = scope.select(:id)
+      else
+        return Gutentag::Tag.none
+      end
     end
 
     joins(:taggings).where(
