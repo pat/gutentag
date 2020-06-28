@@ -3,9 +3,10 @@ dist: xenial
 script: bundle exec appraisal rake
 rvm:
   - 2.3.8
-  - 2.4.6
-  - 2.5.5
-  - 2.6.3
+  - 2.4.10
+  - 2.5.8
+  - 2.6.6
+  - 2.7.1
   # - jruby-9.2.8.0
 before_install:
   - gem install bundler --version 1.17.3

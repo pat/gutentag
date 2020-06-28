@@ -17,7 +17,7 @@ appraise "rails_4_2" do
   gem "activerecord-jdbcmysql-adapter",      "~> 1.3.23", :platform => :jruby
   gem "activerecord-jdbcpostgresql-adapter", "~> 1.3.23", :platform => :jruby
   gem "activerecord-jdbcsqlite3-adapter",    "~> 1.3.23", :platform => :jruby
-end
+end if RUBY_VERSION.to_f < 2.7
 
 appraise "rails_5_0" do
   gem "rails",  "~> 5.0.3"
