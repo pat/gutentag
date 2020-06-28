@@ -2,6 +2,13 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.5.3 - 2020-06-28
+
+### Fixed
+
+* Use `saved_change_to_tag_names?` instead of `tag_names_previously_changed?` for Rails 5.1+ ([Morten Trolle](https://github.com/mtrolle) in [70](https://github.com/pat/gutentag/pull/70)).
+* `Gutentag::Tag.names_for_scope` now handles empty scopes ([Mike Gunderloy](https://github.com/ffmike) in [#73](https://github.com/pat/gutentag/pull/73)).
+
 ## 2.5.2 - 2019-07-08
 
 ### Fixed
