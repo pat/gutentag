@@ -4,7 +4,7 @@ require "bundler/setup"
 
 Bundler.require :default, :development
 
-Dir["#{__dir__}/support/**/*.rb"].each { |file| require file }
+Dir["#{__dir__}/support/**/*.rb"].sort.each { |file| require file }
 
 Combustion.initialize! :active_record
 ActiveSupport.run_load_hooks :gutentag unless defined?(Gutentag::Engine)

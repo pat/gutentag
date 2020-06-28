@@ -20,3 +20,19 @@ Style/MultilineIfModifier:
 Style/MultilineTernaryOperator:
   Exclude:
     - db/migrate/*.rb
+
+# 0.80
+
+Style/HashEachMethods:
+  Enabled: true
+Style/HashTransformKeys:
+  Enabled: true
+Style/HashTransformValues:
+  Enabled: true
+
+# 0.81
+
+Lint/RaiseException:
+  Enabled: true
+Lint/StructNewOverride:
+  Enabled: true
