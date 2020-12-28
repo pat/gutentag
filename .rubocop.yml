@@ -9,6 +9,9 @@ AllCops:
     - gemfiles/*.gemfile
     - vendor/**/*
 
+Bundler/DuplicatedGem:
+  Enabled: false
+
 Metrics/MethodLength:
   Exclude:
     - db/migrate/1_gutentag_tables.rb
