@@ -2,11 +2,26 @@
 test:
   adapter: mysql2
   database: gutentag
-  username: root
+  username: <%= ENV.fetch("DB_USERNAME", "root") %>
+  <% if ENV["DB_HOST"] %>
+  host: <%= ENV["DB_HOST"] %>
+  <% end %>
+  <% if ENV["DB_PASSWORD"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  <% end %>
 <% elsif ENV["DATABASE"] == "postgres" %>
 test:
   adapter: postgresql
   database: gutentag
+  <% if ENV["DB_HOST"] %>
+  host: <%= ENV["DB_HOST"] %>
+  <% end %>
+  <% if ENV["DB_USERNAME"] %>
+  username: <%= ENV["DB_USERNAME"] %>
+  <% end %>
+  <% if ENV["DB_PASSWORD"] %>
+  password: <%= ENV["DB_PASSWORD"] %>
+  <% end %>
 <% else %>
 test:
   adapter: sqlite3
