@@ -13,6 +13,7 @@ class Gutentag::TagValidations
     if ActiveRecord::VERSION::STRING.to_f > 4.0
       classes << ActiveRecord::NoDatabaseError
     end
+    classes << ActiveRecord::ConnectionNotEstablished
     classes << Mysql2::Error     if defined?(::Mysql2)
     classes << PG::ConnectionBad if defined?(::PG)
     classes
