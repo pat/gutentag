@@ -67,6 +67,13 @@ To return records that have _all_ specified tags, use `:match => :all`:
 Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :all)
 ```
 
+To return records that have _none_ of the specified tags, use `:match => :none`:
+
+```ruby
+# Returns all articles that have *neither* tag_a nor tag_b.
+Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :none)
+```
+
 <h2 id="installation">Installation</h2>
 
 ### Dependencies
