@@ -8,7 +8,7 @@ class Gutentag::TaggedWith::Query
   end
 
   def call
-    model.where "#{model_id} IN (#{query.to_sql})"
+    model.where "#{model_id} #{operator} (#{query.to_sql})"
   end
 
   private
@@ -20,8 +20,16 @@ class Gutentag::TaggedWith::Query
   end
 
   def query
-    return taggable_ids_query if match == :any || values.length == 1
+    return taggable_ids_query if match_any_or_none? || values.length == 1
 
     taggable_ids_query.having("COUNT(*) = #{values.length}").group(:taggable_id)
+  end
+
+  def operator
+    match == :none ? "NOT IN" : "IN"
+  end
+
+  def match_any_or_none?
+    %i[any none].include?(match)
   end
 end

@@ -160,6 +160,26 @@ RSpec.describe Gutentag::ActiveRecord do
       it { is_expected.not_to include oregon_article }
     end
 
+    context "matching excluding one tag" do
+      subject do
+        Article.tagged_with(:names => %w[ melbourne ], :match => :none)
+      end
+
+      it { expect(subject.count).to eq 1 }
+      it { is_expected.to include oregon_article }
+      it do
+        is_expected.not_to include melbourne_oregon_article, melbourne_article
+      end
+    end
+
+    context "matching excluding all tags" do
+      subject do
+        Article.tagged_with(:names => %w[ melbourne oregon ], :match => :none)
+      end
+
+      it { expect(subject.count).to eq 0 }
+    end
+
     it "should work on STI subclasses" do
       thinkpiece = Thinkpiece.create! :tag_names => ["pancakes"]
 
