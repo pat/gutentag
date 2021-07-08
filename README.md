@@ -8,7 +8,7 @@ A good, simple, solid tagging extension for ActiveRecord.
 
 This was initially built partly as a proof-of-concept, partly to see how a tagging gem could work when it's not all stuffed within models, and partly just because I wanted a simpler tagging library. It's now a solid little tagging Rails engine.
 
-If you want to know more, read [this blog post](http://freelancing-gods.com/posts/gutentag_simple_rails_tagging).
+If you want to know more, read [this blog post](http://freelancing-gods.com/posts/gutentag_simple_rails_tagging), or have a look at [the Examples page](https://github.com/pat/gutentag/wiki/Examples) in the wiki (which includes a starting point for accepting tag values in a form).
 
 ## Contents
 
