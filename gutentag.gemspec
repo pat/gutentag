@@ -16,7 +16,7 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency     "activerecord", ">= 3.2.0"
 
-  s.add_development_dependency "appraisal",           "~> 2.3"
+  # s.add_development_dependency "appraisal",           "~> 2.3"
   s.add_development_dependency "bundler",             ">= 1.17"
   s.add_development_dependency "combustion",          "~> 1.1"
   s.add_development_dependency "database_cleaner",    "~> 1.6"
