@@ -93,29 +93,11 @@ Get it into your Gemfile - and don't forget the version constraint!
 gem 'gutentag', '~> 2.5'
 ```
 
-Next: your tags get persisted to your database, so let's import the migrations:
+Next: your tags get persisted to your database, so let's import the migrations, update them to your current version of Rails, and then migrate:
 
 ```Bash
 bundle exec rake gutentag:install:migrations
-```
-
-**Before you run the migrations**: it is strongly recommended that you edit the superclass used in each of them to match your current Rails version. So, if you're using Rails v6.1, then use `ActiveRecord::Migration[6.1]` in each Gutentag migration file:
-
-```ruby
-# remove these lines:
-superclass = ActiveRecord::VERSION::MAJOR < 5 ?
-  ActiveRecord::Migration : ActiveRecord::Migration[4.2]
-
-# and alter the migration's superclass:
-class GutentagTables < ActiveRecord::Migration[6.1]
-# repeat for each Gutentag migration
-```
-
-It should be safe to use a superclass version anywhere between 4.2 and 6.1 - whatever your current version of Rails is recommended. If you're using Rails 4.2 or earlier, then your superclass _must_ be `ActiveRecord::Migration` with no version specified.
-
-Once these migration files have been edited accordingly, you can migrate your database:
-
-```Bash
+bundle exec rails generate gutentag:migration_versions
 bundle exec rake db:migrate
 ```
 

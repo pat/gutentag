@@ -6,7 +6,8 @@ Bundler.require :default, :development
 
 Dir["#{__dir__}/support/**/*.rb"].sort.each { |file| require file }
 
-Combustion.initialize! :active_record
+Combustion.initialize! :active_record, :database_migrate => false
+AdjustMigrations.call(Combustion::Application)
 ActiveSupport.run_load_hooks :gutentag unless defined?(Gutentag::Engine)
 
 require "rspec/rails"
