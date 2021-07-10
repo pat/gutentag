@@ -2,6 +2,17 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.6.0 - 2021-07-10
+
+### Added
+
+* Queries can now be made for objects that have _none_ of the specified tags using `:match => :none` ([Rares S](https://github.com/laleshii) in [#79](https://github.com/pat/gutentag/pull/79)).
+* Added a generator `gutentag:migration_versions` to update generated migrations so they use the current version of Rails/ActiveRecord's Migration superclass. See discussion in [#80](https://github.com/pat/gutentag/issues/80).
+
+### Changed
+
+* When adding Gutentag to a new app, the migrations require the `gutentag:migration_versions` generator to be run to ensure the latest ActiveRecord migration superclass is used. This change has no impact to existing apps. See discussion in [#80](https://github.com/pat/gutentag/issues/80).
+
 ## 2.5.4 - 2021-02-21
 
 ### Fixed
