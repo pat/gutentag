@@ -2,4 +2,5 @@
 gemfiles
 pkg/*
 spec/internal/db/*.sqlite
+spec/internal/db/migrate/
 .rubocop-*-yml
