@@ -4,10 +4,6 @@ source "https://rubygems.org"
 
 gemspec
 
-gem "appraisal",
-  :git    => "https://github.com/marcotc/appraisal.git",
-  :branch => "explicit-require-set"
-
 gem "test-unit", :platform => :ruby_22
 
 gem "mysql2",  "~> 0.3",    :platform => :ruby
