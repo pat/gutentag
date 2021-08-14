@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GutentagCacheCounter < ActiveRecord::Migration
+class GutentagCacheCounter < ActiveRecord::Migration[4.2]
   def up
     add_column :gutentag_tags, :taggings_count, :integer, :default => 0
     add_index  :gutentag_tags, :taggings_count

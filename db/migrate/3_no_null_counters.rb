@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class NoNullCounters < ActiveRecord::Migration
+class NoNullCounters < ActiveRecord::Migration[4.2]
   def up
     change_column :gutentag_tags, :taggings_count, :integer,
       :default => 0,

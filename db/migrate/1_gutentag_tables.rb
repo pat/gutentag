@@ -1,6 +1,6 @@
 # frozen_string_literal: true
 
-class GutentagTables < ActiveRecord::Migration
+class GutentagTables < ActiveRecord::Migration[4.2]
   def up
     create_table :gutentag_taggings do |t|
       t.integer :tag_id,        :null => false
