@@ -2,6 +2,12 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.6.1 - 2021-09-18
+
+### Fixed
+
+* The initially-generated migrations now work out of the box with Rails 5.0+, using the 4.2 version. The generator will now update that version to the latest, or remove it for Rails 4.2. See later discussion in [#80](https://github.com/pat/gutentag/issues/80).
+
 ## 2.6.0 - 2021-07-10
 
 ### Added

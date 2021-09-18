@@ -81,7 +81,7 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :none)
 These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
 
 * Ruby: MRI v2.3-v2.6, JRuby v9.2.5
-* Rails/ActiveRecord: v4.0-v6.0
+* Rails/ActiveRecord: v4.0-v6.1
 
 If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that fully supported those versions is v2.4.1.
 
@@ -90,7 +90,7 @@ If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag 
 Get it into your Gemfile - and don't forget the version constraint!
 
 ```Ruby
-gem 'gutentag', '~> 2.5'
+gem 'gutentag', '~> 2.6'
 ```
 
 Next: your tags get persisted to your database, so let's import the migrations, update them to your current version of Rails, and then migrate:
@@ -179,4 +179,4 @@ Please note that this project now has a [Contributor Code of Conduct](http://con
 
 <h2 id="licence">Licence</h2>
 
-Copyright (c) 2013-2015, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
+Copyright (c) 2013-2021, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
