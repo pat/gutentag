@@ -1,7 +1,7 @@
 # Gutentag
 
 [![Gem Version](https://badge.fury.io/rb/gutentag.svg)](http://badge.fury.io/rb/gutentag)
-[![Build Status](https://travis-ci.org/pat/gutentag.svg?branch=master)](https://travis-ci.org/pat/gutentag)
+[![Build Status](https://github.com/pat/gutentag/actions/workflows/ci.yml/badge.svg?branch=main)](https://github.com/pat/gutentag/actions/)
 [![Code Climate](https://codeclimate.com/github/pat/gutentag.svg)](https://codeclimate.com/github/pat/gutentag)
 
 A good, simple, solid tagging extension for ActiveRecord.
