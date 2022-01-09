@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0' ]
+        ruby: [ '2.4', '2.5', '2.6', '2.7', '3.0', '3.1' ]
         bundler: [ '1.17.3', '2.1.4' ]
         database: [ 'mysql', 'postgresql', 'sqlite' ]
         exclude:
@@ -23,14 +23,16 @@ jobs:
             bundler: '1.17.3'
           - ruby: '3.0'
             bundler: '1.17.3'
+          - ruby: '3.1'
+            bundler: '1.17.3'
 
     services:
       postgres:
-        image: postgres:10
+        image: postgres:13.5
         env:
           POSTGRES_USER: root
           POSTGRES_PASSWORD: gutentag
-          POSTGRES_DB: test
+          POSTGRES_DB: gutentag
         ports: ['5432:5432']
         # needed because the postgres container does not provide a healthcheck
         options: --health-cmd pg_isready --health-interval 10s --health-timeout 5s --health-retries 5
@@ -39,7 +41,7 @@ jobs:
         image: mysql:5.7
         env:
           MYSQL_ROOT_PASSWORD: gutentag
-          MYSQL_DATABASE: test
+          MYSQL_DATABASE: gutentag
         ports: ['3306:3306']
         options: --health-cmd="mysqladmin ping" --health-interval=10s --health-timeout=5s --health-retries=3
 

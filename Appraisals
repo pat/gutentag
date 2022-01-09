@@ -35,23 +35,25 @@ appraise "rails_5_2" do
   gem "mysql2", "~> 0.5.0", :platform => :ruby
 end if RUBY_VERSION.to_f >= 2.2 && RUBY_VERSION.to_f <= 2.7
 
-appraise "rails_6_0" do
-  gem "rails",   "~> 6.0.0"
-  gem "pg",      "~> 1.0",   :platform => :ruby
-  gem "mysql2",  "~> 0.5.0", :platform => :ruby
-  gem "sqlite3", "~> 1.4",   :platform => :ruby
-end if RUBY_VERSION.to_f >= 2.5 && RUBY_PLATFORM != "java"
+if RUBY_PLATFORM != "java"
+  appraise "rails_6_0" do
+    gem "rails",   "~> 6.0.0"
+    gem "pg",      "~> 1.0",   :platform => :ruby
+    gem "mysql2",  "~> 0.5.0", :platform => :ruby
+    gem "sqlite3", "~> 1.4",   :platform => :ruby
+  end if RUBY_VERSION.to_f >= 2.5 && RUBY_VERSION.to_f <= 3.0
 
-appraise "rails_6_1" do
-  gem "rails",   "~> 6.1.0"
-  gem "pg",      "~> 1.0",   :platform => :ruby
-  gem "mysql2",  "~> 0.5.0", :platform => :ruby
-  gem "sqlite3", "~> 1.4",   :platform => :ruby
-end if RUBY_VERSION.to_f >= 2.5 && RUBY_PLATFORM != "java"
+  appraise "rails_6_1" do
+    gem "rails",   "~> 6.1.0"
+    gem "pg",      "~> 1.0",   :platform => :ruby
+    gem "mysql2",  "~> 0.5.0", :platform => :ruby
+    gem "sqlite3", "~> 1.4",   :platform => :ruby
+  end if RUBY_VERSION.to_f >= 2.5
 
-appraise "rails_7_0" do
-  gem "rails",   "~> 7.0.0"
-  gem "pg",      "~> 1.0",   :platform => :ruby
-  gem "mysql2",  "~> 0.5.0", :platform => :ruby
-  gem "sqlite3", "~> 1.4",   :platform => :ruby
-end if RUBY_VERSION.to_f >= 2.7 && RUBY_PLATFORM != "java"
+  appraise "rails_7_0" do
+    gem "rails",   "~> 7.0.1"
+    gem "pg",      "~> 1.0",   :platform => :ruby
+    gem "mysql2",  "~> 0.5.0", :platform => :ruby
+    gem "sqlite3", "~> 1.4",   :platform => :ruby
+  end if RUBY_VERSION.to_f >= 2.7
+end

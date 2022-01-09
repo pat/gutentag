@@ -9,6 +9,9 @@ test:
   <% if ENV["DB_PASSWORD"] %>
   password: <%= ENV["DB_PASSWORD"] %>
   <% end %>
+  <% if ENV["DB_PORT"] %>
+  port: <%= ENV["DB_PORT"] %>
+  <% end %>
 <% elsif ENV["DATABASE"] == "postgres" %>
 test:
   adapter: postgresql
@@ -21,6 +24,9 @@ test:
   <% end %>
   <% if ENV["DB_PASSWORD"] %>
   password: <%= ENV["DB_PASSWORD"] %>
+  <% end %>
+  <% if ENV["DB_PORT"] %>
+  port: <%= ENV["DB_PORT"] %>
   <% end %>
 <% else %>
 test:

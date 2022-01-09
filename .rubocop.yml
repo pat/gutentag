@@ -7,6 +7,7 @@ AllCops:
   TargetRubyVersion: 2.3
   Exclude:
     - gemfiles/*.gemfile
+    - spec/internal/db/migrate/*
     - vendor/**/*
 
 Bundler/DuplicatedGem:
