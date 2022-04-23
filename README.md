@@ -74,6 +74,21 @@ To return records that have _none_ of the specified tags, use `:match => :none`:
 Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :none)
 ```
 
+To return all tag names used by an instance of a model or relation
+
+```ruby 
+# Returns array of tag names
+Gutentag::Tag.names_for_scope(Article)
+# => ['tag1', 'tag2', 'tag3']
+
+Gutentag::Tag.names_for_scope(Article.where(:created_at => 1.week.ago..1.second.ago))
+# => ['tag3']
+
+# Return array of the tag names used from the two most recent articles
+Gutentag::Tag.names_for_scope(Article.order(created_at: :desc).limit(2))
+# => []
+```
+
 <h2 id="installation">Installation</h2>
 
 ### Dependencies
