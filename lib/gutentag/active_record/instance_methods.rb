@@ -20,13 +20,20 @@ module Gutentag::ActiveRecord::InstanceMethods
 
     # Update the underlying value rather than going through the setter, to
     # ensure this update doesn't get marked as a 'change'.
-    @attributes.write_from_database "tag_names", nil
+    @attributes.write_from_database "tag_names", []
+    @prepared_tag_names = false
   end
 
   def tag_names
-    # If the underlying value is nil, we've not requested this from the
-    # database yet.
-    self.tag_names = tags.pluck(:name) if super.nil?
+    if super.nil? || !prepared_tag_names?
+      # If the underlying value is nil, we've not requested this from the
+      # database yet. But we also don't want to make the query twice. So, grab
+      # the names, prepare as needed, and make sure we also invoke the setter.
+      names = tags.pluck(:name)
+
+      prepare_tag_names(names)
+      self.tag_names = names
+    end
 
     # Use ActiveRecord's underlying implementation with change tracking.
     super
@@ -35,7 +42,7 @@ module Gutentag::ActiveRecord::InstanceMethods
   def tag_names=(names)
     # This value is about to be overwritten, but we want to make sure the change
     # tracking doesn't think the original value was nil.
-    @attributes.write_from_database "tag_names", tags.pluck(:name)
+    prepare_tag_names
 
     super Gutentag::TagNames.call(names)
   end
@@ -44,5 +51,18 @@ module Gutentag::ActiveRecord::InstanceMethods
 
   def persist_tags
     Gutentag::Persistence.new(Gutentag::ChangeState.new(self)).persist
+  end
+
+  def prepare_tag_names(names = nil)
+    return if prepared_tag_names?
+
+    names ||= tags.pluck(:name)
+    @attributes.write_from_database("tag_names", names)
+
+    @prepared_tag_names = true
+  end
+
+  def prepared_tag_names?
+    @prepared_tag_names ||= false
   end
 end
