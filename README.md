@@ -76,7 +76,7 @@ Article.tagged_with(:ids => [tag_a.id, tag_b.id], :match => :none)
 
 To return all tag names used by an instance of a model or relation
 
-```ruby 
+```ruby
 # Returns array of tag names
 Gutentag::Tag.names_for_scope(Article)
 # => ['tag1', 'tag2', 'tag3']
@@ -95,7 +95,7 @@ Gutentag::Tag.names_for_scope(Article.order(created_at: :desc).limit(2))
 
 These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
 
-* Ruby: MRI v2.3-v3.0, JRuby v9.2.5
+* Ruby: MRI v2.3-v3.1, JRuby v9.2.5
 * Rails/ActiveRecord: v4.0-v7.0
 
 If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that fully supported those versions is v2.4.1.
@@ -194,4 +194,4 @@ Please note that this project now has a [Contributor Code of Conduct](http://con
 
 <h2 id="licence">Licence</h2>
 
-Copyright (c) 2013-2021, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
+Copyright (c) 2013-2022, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.

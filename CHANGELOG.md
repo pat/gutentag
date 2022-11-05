@@ -2,6 +2,17 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 2.6.2 - 2022-11-05
+
+### Fixed
+
+* Documenting the `Gutentag::Tag.names_for_scope` method. ([Ryan Romanchuk](https://github.com/rromanchuk) in [#83](https://github.com/pat/gutentag/pull/83)).
+* Avoid double-querying of tag_names from the database. See discussion in [#84](https://github.com/pat/gutentag/issues/84).
+
+### Changed
+
+* Added Ruby 3.1 to the test matrix.
+
 ## 2.6.1 - 2021-09-18
 
 ### Fixed
