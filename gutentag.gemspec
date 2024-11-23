@@ -16,12 +16,12 @@ Gem::Specification.new do |s|
 
   s.add_runtime_dependency     "activerecord", ">= 3.2.0"
 
-  s.add_development_dependency "appraisal",           "~> 2.4.1"
+  s.add_development_dependency "appraisal",           "~> 2.5.0"
   s.add_development_dependency "bundler",             ">= 1.17"
   s.add_development_dependency "combustion",          "~> 1.1"
-  s.add_development_dependency "database_cleaner",    "~> 1.6"
+  s.add_development_dependency "database_cleaner",    "~> 2.1"
   s.add_development_dependency "rails"
-  s.add_development_dependency "rspec-rails",         "~> 3.1"
+  s.add_development_dependency "rspec-rails",         ">= 5.1.2"
   s.add_development_dependency "rubocop",             "~> 0.81.0"
   s.add_development_dependency "rubocop-performance", "~> 1"
 end
