@@ -33,7 +33,7 @@ class Gutentag::Tag < ActiveRecord::Base
   end
 
   def name=(value)
-    super(Gutentag.normaliser.call(value))
+    write_attribute(:name, Gutentag.normaliser.call(value))
   end
 end
 
