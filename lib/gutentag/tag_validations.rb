@@ -9,10 +9,7 @@ class Gutentag::TagValidations
     :uniqueness => {:case_sensitive => false}
   }.freeze
   DATABASE_ERROR_CLASSES = lambda {
-    classes = []
-    if ActiveRecord::VERSION::STRING.to_f > 4.0
-      classes << ActiveRecord::NoDatabaseError
-    end
+    classes = [ActiveRecord::NoDatabaseError]
     classes << ActiveRecord::ConnectionNotEstablished
     classes << Mysql2::Error     if defined?(::Mysql2)
     classes << PG::ConnectionBad if defined?(::PG)

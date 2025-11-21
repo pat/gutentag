@@ -31,45 +31,20 @@ class Gutentag::ActiveRecord
   end
 
   def add_attribute
-    if ActiveRecord::VERSION::STRING.to_f <= 4.2
-      model.define_attribute_method "tag_names"
-    else
-      model.attribute "tag_names", ActiveRecord::Type::Value.new,
-        :default => default_tag_names
-    end
+    model.attribute "tag_names", ActiveRecord::Type::Value.new,
+      :default => nil
   end
 
   def add_callbacks
     model.after_save :persist_tags
-
-    if legacy?
-      model.after_save :reset_tag_names
-    else
-      model.after_commit :reset_tag_names, :on => %i[ create update ]
-    end
+    model.after_commit :reset_tag_names, :on => %i[ create update ]
   end
 
   def add_methods
-    case ActiveRecord::VERSION::STRING.to_f
-    when 3.2..4.1
-      require "gutentag/active_record/instance_methods_3_2"
-    when 4.2
-      require "gutentag/active_record/instance_methods_4_2"
-    else
-      require "gutentag/active_record/instance_methods"
-    end
-
     model.send :extend, Gutentag::ActiveRecord::ClassMethods
     model.send :include, Gutentag::ActiveRecord::InstanceMethods
-  end
-
-  def default_tag_names
-    ActiveRecord::VERSION::STRING.to_f <= 4.2 ? [] : nil
-  end
-
-  def legacy?
-    ActiveRecord::VERSION::STRING.to_f < 4.2
   end
 end
 
 require "gutentag/active_record/class_methods"
+require "gutentag/active_record/instance_methods"

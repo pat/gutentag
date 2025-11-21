@@ -10,10 +10,6 @@ module Gutentag
       def update_migration_versions
         superclass = "ActiveRecord::Migration[#{rails_version}]"
 
-        if ::ActiveRecord::VERSION::MAJOR < 5
-          superclass = "ActiveRecord::Migration"
-        end
-
         migration_files.each do |file|
           gsub_file file,
             /< ActiveRecord::Migration\[4\.2\]$/,
