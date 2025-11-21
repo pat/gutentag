@@ -2,6 +2,17 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 3.0.0 - 2025-11-21
+
+### Breaking
+
+This release is all about which versions of Ruby and Rails are supported.
+
+* Removing official support for Ruby 2.4-2.7 (2.7 may continue to work, but is not covered by CI).
+* Removing official support for Rails 4.0-6.0 (5.2 and 6.0 may continue to work, but are not covered by CI).
+* Adding official support for Ruby 3.2-3.4 (though no code changes were required for this).
+* Adding official support for Rails 7.1-8.1 (one change from [Urban Hafner](https://github.com/ujh) in [#87](https://github.com/pat/gutentag/pull/87) assisted with this for Rails 8.0).
+
 ## 2.6.2 - 2022-11-05
 
 ### Fixed
