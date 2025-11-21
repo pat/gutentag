@@ -93,10 +93,10 @@ Gutentag::Tag.names_for_scope(Article.order(created_at: :desc).limit(2))
 
 ### Dependencies
 
-These are the versions the test suite runs against. It's possible it may work on older versions of Ruby, but it definitely won't work on older versions of Rails.
+These are the versions the current test suite runs against. It's possible that the gem may work on slightly older versions (Ruby 2.7, Rails 5.2).
 
-* Ruby: MRI v2.7-v3.3
-* Rails/ActiveRecord: v5.2-v8.0
+* Ruby: MRI v3.0-v3.4
+* Rails/ActiveRecord: v6.1-v8.0
 
 If you're using MRI v2.2 and/or ActiveRecord v3.2, the last version of Gutentag that fully supported those versions is v2.4.1.
 
