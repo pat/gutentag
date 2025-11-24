@@ -28,11 +28,10 @@ module Gutentag
       end
 
       def known_migration_names
-        @known_migration_names ||= begin
+        @known_migration_names ||=
           Dir[File.join(__dir__, "../../../db/migrate/*.rb")].collect do |path|
-            File.basename(path).gsub(/\A\d+_/, "").gsub(/\.rb\z/, "")
+            File.basename(path).gsub(/\A\d+_/, "").delete_suffix(".rb")
           end
-        end
       end
 
       def rails_version

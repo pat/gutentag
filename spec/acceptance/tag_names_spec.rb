@@ -21,7 +21,7 @@ RSpec.describe "Managing tags via names" do
   end
 
   it "allows for different tag normalisation" do
-    Gutentag.normaliser = lambda { |name| name.upcase }
+    Gutentag.normaliser = lambda(&:upcase)
 
     tag = Gutentag::Tag.create(:name => "melbourne")
     expect(tag.name).to eq("MELBOURNE")

@@ -4,7 +4,7 @@ inherit_from:
 require: rubocop-performance
 
 AllCops:
-  TargetRubyVersion: 2.3
+  TargetRubyVersion: 3.0
   Exclude:
     - gemfiles/*.gemfile
     - spec/internal/db/migrate/*

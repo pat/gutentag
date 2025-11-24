@@ -47,7 +47,7 @@ RSpec.describe "Dirty state of tag names" do
   end
 
   it "knows when a saved instance is reloaded (and thus has no changes)" do
-    article.update!(tag_names: ["pancakes"])
+    article.update!(:tag_names => ["pancakes"])
     article.reload
     article.tag_names = ["pancakes"]
 
