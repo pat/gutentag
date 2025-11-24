@@ -2,6 +2,16 @@
 
 All notable changes to this project (at least, from v0.5.0 onwards) will be documented in this file.
 
+## 3.0.1 - 2025-11-24
+
+### Fixed
+
+* Fixed dirty state after reload is called on a tagged instance. ([Michael Grosser](https://github.com/grosser) in [#54](https://github.com/pat/gutentag/pull/92))
+
+### Changed
+
+* Updated syntax to be for Ruby 3.0 and newer.
+
 ## 3.0.0 - 2025-11-21
 
 ### Breaking
