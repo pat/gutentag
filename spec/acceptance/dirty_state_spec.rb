@@ -45,4 +45,16 @@ RSpec.describe "Dirty state of tag names" do
     article.tag_names = ["pancakes"]
     expect(article.changes).to eq({})
   end
+
+  it "knows when a saved instance is reloaded (and thus has no changes)" do
+    article.update!(tag_names: ["pancakes"])
+    article.reload
+    article.tag_names = ["pancakes"]
+
+    expect(article).not_to be_changed
+    expect(article.changes).to eq({})
+    expect(article.tag_names_changed?).to eq(false)
+    expect(article.tag_names_was).to eq(["pancakes"])
+    expect(article.tag_names_change).to eq(nil)
+  end
 end

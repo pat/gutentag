@@ -42,6 +42,11 @@ module Gutentag::ActiveRecord::InstanceMethods
     super Gutentag::TagNames.call(names)
   end
 
+  def reload(*)
+    @prepared_tag_names = false
+    super
+  end
+
   private
 
   def persist_tags
