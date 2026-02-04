@@ -7,7 +7,7 @@ if RUBY_PLATFORM != "java"
     gem "pg",          "~> 1.0",   :platform => :ruby
     gem "mysql2",      "~> 0.5.0", :platform => :ruby
     gem "sqlite3",     "~> 1.4",   :platform => :ruby
-  end
+  end if RUBY_VERSION.to_f < 4.0
 
   appraise "rails_7_0" do
     gem "rails",       "~> 7.0.8.6"

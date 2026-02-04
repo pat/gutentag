@@ -9,7 +9,7 @@ jobs:
     strategy:
       fail-fast: false
       matrix:
-        ruby: [ '3.0', '3.1', '3.2', '3.3', '3.4' ]
+        ruby: [ '3.0', '3.1', '3.2', '3.3', '3.4', '4.0' ]
         database: [ 'mysql', 'postgresql', 'sqlite' ]
 
     services:
@@ -33,7 +33,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:
@@ -42,9 +42,12 @@ jobs:
       - name: Generate Appraisal gemfiles
         run: bundle exec appraisal generate
       - name: Install gems for each appraisal
+        env:
+          BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
         run: bundle exec appraisal install
       - name: Test
         env:
+          BUNDLE_PATH: ${{ github.workspace }}/vendor/bundle
           CI: "true"
           DATABASE: ${{ matrix.database }}
           DB_USERNAME: root
@@ -57,7 +60,7 @@ jobs:
 
     steps:
       - name: Check out code
-        uses: actions/checkout@v4
+        uses: actions/checkout@v6
       - name: Set up ruby
         uses: ruby/setup-ruby@v1
         with:

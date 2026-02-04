@@ -25,3 +25,5 @@ gem "net-smtp" if RUBY_VERSION.to_f > 3.0
 gem "mutex_m" if RUBY_VERSION.to_f > 3.2
 # drb is no longer a default gem in MRI 4.0, warnings in 3.4
 gem "drb" if RUBY_VERSION.to_f > 3.3
+# benchmark is no longer a default gem in MRI 4.0, warnings in 3.4
+gem "benchmark" if RUBY_VERSION.to_f > 3.3
