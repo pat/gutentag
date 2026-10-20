@@ -192,8 +192,8 @@ Further discussion and examples of this can be found in [issue 65](https://githu
 
 <h2 id="contribution">Contribution</h2>
 
-Please note that this project now has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/). By participating in this project you agree to abide by its terms.
+Please note that this project has a [Contributor Code of Conduct](http://contributor-covenant.org/version/1/0/0/) and an [AI/LLMs policy](https://github.com/pat/combustion/blob/main/AI_POLICY.md). By participating in this project you agree to abide by their terms.
 
 <h2 id="licence">Licence</h2>
 
-Copyright (c) 2013-2025, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
+Copyright (c) 2013-2026, Gutentag is developed and maintained by Pat Allan, and is released under the open MIT Licence.
